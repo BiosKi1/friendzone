@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Friend Zone</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_pseudo">Pseudo</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_pseudo">Pseudo incorrect</string>
+    <string name="error_invalid_password_short">Mot de passe trop court</string>
+    <string name="error_invalid_password">Mot de passe trop incorrect</string>
+    <string name="error_incorrect_password">Mot de passe incorrect</string>
+    <string name="error_field_required">Ce champ est requis</string>
+
+    <!--Signin Activity-->
+    <!-- Nom des champs et des boutons -->
+    <string name="pseudo">Pseudo</string>
+    <string name="phone">Numéro de téléphone</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="signinBtn">S\'inscrire</string>
+    <string name="connexionBtn">Se connecter</string>
+
+    <!-- Texte pour les messages d'erreur -->
+    <string name="pseudoError">Veuillez saisir un pseudo valide</string>
+    <string name="phoneError">Veuillez saisir un numéro de téléphone valide</string>
+    <string name="phoneErrorLength">Le numéro de téléphone doit contenir 10 chiffres!</string>
+    <string name="emailError">Veuillez saisir une adresse mail valide</string>
+    <string name="passwordError">Veuillez saisir un mot de passe valide. Il doit contenir au moins une majuscule,
+    une miniscule, un chiffre, et doit être composé d\'au moins 6 caractères</string>
+    <string name="title_activity_sign_in_maps">Map</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
