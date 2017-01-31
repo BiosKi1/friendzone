@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "250619251860",
+    "firebase_url": "https://friendzone-155215.firebaseio.com",
+    "project_id": "friendzone-155215",
+    "storage_bucket": "friendzone-155215.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250619251860:android:2aab2f0b48ca459c",
+        "android_client_info": {
+          "package_name": "com.example.junzi.friendzone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250619251860-6l7cumhi40pk6sqkiltrbe9ehnv5111q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.junzi.friendzone",
+            "certificate_hash": "AAE525C9F4BA95D910E173D17D689B962D80217D"
+          }
+        },
+        {
+          "client_id": "250619251860-de9op3gmc1qrk5bjb7nsuq736c1iscug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.junzi.friendzone",
+            "certificate_hash": "522D217072A139DA7598C46DB96B5AAD9C391AE5"
+          }
+        },
+        {
+          "client_id": "250619251860-ai9n35cpdts9fft4qp71pp9g1rnuipvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUzPrWQXP3uvm8XwqbT8EaZI9GbHyc5yQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250619251860-ai9n35cpdts9fft4qp71pp9g1rnuipvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
