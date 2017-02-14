@@ -1,6 +1,8 @@
 package com.example.junzi.friendzone;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.EditText;
@@ -15,6 +17,11 @@ public class InscriptionActivity extends Activity implements View.OnClickListene
     private EditText pseudo, phone, email, password;
     private Button signinBtn;
     private AwesomeValidation validation;
+    private String JSON_STRING;
+    private Boolean inscription = false, existMail = false;
+    private String PseudoS, PhoneS, EmailS, PasswordS;
+
+
     //Expression régulière utiliser pour contrôler la validité des informations saisies
     /*private String regexPseudo = "^(?=.*[a-z])(?=.*[A-Z])(?=\\S+$)$";*/
     private String regexPhone= "^[0-9]{2}[0-9]{8}$";
@@ -44,8 +51,30 @@ public class InscriptionActivity extends Activity implements View.OnClickListene
     * Affiche un message de confirmation quand les informations envoyés sont valides
     */
     private void submitForm(){
+		PseudoS =  pseudo.getText().toString();
+		PhoneS = phone.getText().toString();
+		EmailS = email.getText().toString();
+		PasswordS = password.getText().toString();
+
+        /* Call l'api pour inscription */
         if(validation.validate()){
-            Toast.makeText(this, "Inscription réussie", Toast.LENGTH_LONG).show();
+            getJSON();
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (existMail){
+				Toast.makeText(this, "Cette adresse e-mail est déjà utlisée", Toast.LENGTH_LONG).show();
+            }else if(inscription){
+				Toast.makeText(this, "Inscription prise en compte", Toast.LENGTH_LONG).show();
+			}
+            else{
+				Toast.makeText(this, "Informations valides", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Echec de l'inscription, contact a admin", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
@@ -56,5 +85,55 @@ public class InscriptionActivity extends Activity implements View.OnClickListene
         if(view == signinBtn){
             submitForm();
         }
+    }
+
+    private void getJSON(){
+        class GetJSON extends AsyncTask<Void,Void,String> {
+
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(InscriptionActivity.this,"Fetching Data","Wait...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING = s;
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                RequestHandler rh = new RequestHandler();
+                /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
+
+                String s = rh.sendGetRequest("http://192.168.56.1/" +
+                        "friendzoneapi/api/api.php/" +
+                        "?fichier=users&action=inscription" +
+                        "&values[nom]=pasdechamp" +
+                        "&values[prenom]=pasdechamp" +
+                        "&values[mdp]=" + PasswordS +
+                        "&values[tel]=" + PhoneS +
+                        "&values[pseudo]=" + PseudoS +
+                        "&values[mail]="+ EmailS);
+                if(s.contains("ok")){
+					inscription = true;
+				}
+				else if(s.contains("error_mail")){
+					existMail = true;
+					inscription = false;
+				}
+                else{
+                    inscription = false;
+                }
+
+                System.out.println(inscription);
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
     }
 }

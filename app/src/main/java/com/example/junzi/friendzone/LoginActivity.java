@@ -43,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText PasswordView;
     private View ProgressView;
     private View LoginFormView;
-    private String JSON_STRING;
     private String Pseudo;
     private String Mdp;
+    private String JSON_STRING;
     private Boolean identification = false;
 
     @Override
@@ -168,9 +168,6 @@ public class LoginActivity extends AppCompatActivity {
                 String s = rh.sendGetRequest("http://192.168.56.1/friendzoneapi/api/api.php/?" +
                         "fichier=users&action=connexion&values" +
                         "[mail]="+Pseudo+"&values[mdp]="+Mdp);
-
-                if (s.contains("ok")){
-                }
 
                 if (s.contains("ok")){
                     identification = true;
