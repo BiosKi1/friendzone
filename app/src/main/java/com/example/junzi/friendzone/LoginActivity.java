@@ -3,6 +3,7 @@ package com.example.junzi.friendzone;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -42,6 +43,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText PasswordView;
     private View ProgressView;
     private View LoginFormView;
+    private String JSON_STRING;
+    private String Pseudo;
+    private String Mdp;
+    private Boolean identification = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +97,11 @@ public class LoginActivity extends AppCompatActivity {
         String pseudo = PseudoView.getText().toString();
         String password = PasswordView.getText().toString();
 
-        boolean cancel = false;
+        boolean cancel;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
+       /* if (TextUtils.isEmpty(password)) {
             PasswordView.setError(getString(R.string.error_field_required));
             focusView = PasswordView;
             cancel = true;
@@ -115,12 +120,21 @@ public class LoginActivity extends AppCompatActivity {
             PseudoView.setError(getString(R.string.error_invalid_pseudo));
             focusView = PseudoView;
             cancel = true;
+        }*/
+
+        if (isSessionValid(pseudo, password)) {
+            cancel = false;
+        }
+        else {
+            cancel = true;
         }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
-            focusView.requestFocus();
+                PasswordView.setError(getString(R.string.error_incorrect_session));
+                PasswordView.requestFocus();
+                /*focusView.requestFocus();*/
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
@@ -130,27 +144,73 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isPseudoValid(String pseudo) {
-        //TODO: Replace this with your own logic
+    private void getJSON(){
+        class GetJSON extends AsyncTask<Void,Void,String>{
 
-        if (pseudo.equals("admin")){
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LoginActivity.this,"Fetching Data","Wait...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING = s;
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                RequestHandler rh = new RequestHandler();
+                /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
+                String s = rh.sendGetRequest("http://192.168.56.1/friendzoneapi/api/api.php/?" +
+                        "fichier=users&action=connexion&values" +
+                        "[mail]="+Pseudo+"&values[mdp]="+Mdp);
+
+                if (s.contains("ok")){
+                }
+
+                if (s.contains("ok")){
+                    identification = true;
+                }
+                else{
+                    identification = false;
+                }
+
+                System.out.println(s);
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
+    }
+
+    private boolean isSessionValid(String pseudo, String password) {
+        Pseudo = pseudo;
+        Mdp = password;
+        getJSON();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+       /* if (pseudo.equals("admin")){
             return true;
         }else {
             return false;
-        }
+        }*/
 
-        //return pseudo.contains("@");
-    }
 
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        if (password.equals("admin1234")){
+        System.out.println("ici ->  ");
+        System.out.println(identification);
+
+        if (identification){
             return true;
         }
-        else{
-            return false;
-        }
-        //return password.length() > 4;
+        return false;
+        //return pseudo.contains("@");
     }
 
     /**

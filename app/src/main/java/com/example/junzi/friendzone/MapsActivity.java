@@ -18,7 +18,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.Manifest;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import static com.example.junzi.friendzone.R.id.listView;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -33,7 +36,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
 
     }
 
@@ -115,17 +117,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Location l = locationManager.getLastKnownLocation(provider1);
+        Location location = locationManager.getLastKnownLocation(provider1);
+        System.out.print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
+        double alt = location.getAltitude();
 
-        double lat = l.getLatitude();
-        double lng = l.getLongitude();
-        double alt = l.getAltitude();
+        System.out.print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.print(lat);
+        System.out.print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.print(lng);
 
-
-
-        LatLng sydney = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Nom : "));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng position = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(position).title("Nom : "));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
     }
 
     @Override
@@ -136,7 +141,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     System.out.print("grant");
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.

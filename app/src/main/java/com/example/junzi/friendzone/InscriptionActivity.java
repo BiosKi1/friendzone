@@ -11,7 +11,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 
 
-public class signin extends Activity implements View.OnClickListener{
+public class InscriptionActivity extends Activity implements View.OnClickListener{
     private EditText pseudo, phone, email, password;
     private Button signinBtn;
     private AwesomeValidation validation;
@@ -22,7 +22,7 @@ public class signin extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signin);
+        setContentView(R.layout.activity_inscription);
         validation = new AwesomeValidation(ValidationStyle.BASIC);
         //Récupération des informations
         pseudo = (EditText) findViewById(R.id.pseudo);

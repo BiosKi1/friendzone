@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     Button signin;
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), signin.class);
+                Intent myIntent = new Intent(view.getContext(), InscriptionActivity.class);
                 startActivity(myIntent);
             }
         });

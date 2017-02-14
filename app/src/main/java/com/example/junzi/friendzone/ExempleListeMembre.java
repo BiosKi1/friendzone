@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -20,6 +18,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.R.attr.data;
 
 /**
  * Created by junzi on 02/02/2017.
@@ -64,7 +64,7 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                ExempleListeMembre.this, list, R.layout.list_item_exemple,
+                ExempleListeMembre.this, list, R.layout.list_item,
                 new String[]{Config.TAG_ID,Config.TAG_NAME},
                 new int[]{R.id.id, R.id.name});
 
@@ -73,6 +73,7 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
 
     private void getJSON(){
         class GetJSON extends AsyncTask<Void,Void,String>{
+
 
             ProgressDialog loading;
             @Override
@@ -92,7 +93,9 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(Config.URL_GET_ALL);
+                String s = rh.sendGetRequest(Config.URL_CONNECT);
+
+                System.out.println(s);
                 return s;
             }
         }

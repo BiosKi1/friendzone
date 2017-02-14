@@ -11,6 +11,7 @@
     <string name="error_invalid_password">Mot de passe trop incorrect</string>
     <string name="error_incorrect_password">Mot de passe incorrect</string>
     <string name="error_field_required">Ce champ est requis</string>
+    <string name="error_incorrect_session">Mot de passe ou identifiant incorrect</string>
 
     <!--Signin Activity-->
     <!-- Nom des champs et des boutons -->
