@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,13 +18,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static android.R.attr.data;
-
 /**
  * Created by junzi on 02/02/2017.
  */
 
-public class ExempleListeMembre extends AppCompatActivity implements ListView.OnItemClickListener {
+public class ListeAmisActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private ListView listView;
 
@@ -50,12 +47,14 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
-                String id = jo.getString(Config.TAG_ID);
-                String name = jo.getString(Config.TAG_NAME);
+                String id_user = jo.getString(Config.TAG_ID_USER);
+				String id_ami = jo.getString(Config.TAG_ID_AMI);
+                String name = jo.getString(Config.TAG_NAME_USER);
 
                 HashMap<String,String> employees = new HashMap<>();
-                employees.put(Config.TAG_ID,id);
-                employees.put(Config.TAG_NAME,name);
+                employees.put(Config.TAG_ID_USER,id_user);
+				employees.put(Config.TAG_ID_AMI,id_ami);
+                employees.put(Config.TAG_NAME_USER,name);
                 list.add(employees);
             }
 
@@ -64,9 +63,9 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                ExempleListeMembre.this, list, R.layout.list_item,
-                new String[]{Config.TAG_ID,Config.TAG_NAME},
-                new int[]{R.id.id, R.id.name});
+                ListeAmisActivity.this, list, R.layout.list_item,
+                new String[]{Config.TAG_ID_USER,Config.TAG_ID_AMI ,Config.TAG_NAME_USER},
+                new int[]{R.id.id_user, R.id.id_ami, R.id.name_user});
 
         listView.setAdapter(adapter);
     }
@@ -79,7 +78,7 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ExempleListeMembre.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ListeAmisActivity.this,"Fetching Data","Wait...",false,false);
             }
 
             @Override
@@ -93,7 +92,8 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(Config.URL_CONNECT);
+                String url = "http://192.168.56.1/friendzoneapi/api/api.php/?fichier=users&action=amis_liste&values[id]=4";
+                String s = rh.sendGetRequest(url);
 
                 System.out.println(s);
                 return s;
@@ -105,9 +105,9 @@ public class ExempleListeMembre extends AppCompatActivity implements ListView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, ExempleListeMembre.class);
+        Intent intent = new Intent(this, ListeAmisActivity.class);
         HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(Config.TAG_ID).toString();
+        String empId = map.get(Config.TAG_ID_AMI).toString();
         intent.putExtra(Config.EMP_ID,empId);
         startActivity(intent);
     }

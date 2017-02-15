@@ -22,7 +22,9 @@ public class Config {
     //JSON Tags
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
-    public static final String TAG_NAME = "nom";
+    public static final String TAG_NAME_USER = "nom_user";
+    public static final String TAG_ID_USER = "id_user";
+    public static final String TAG_ID_AMI = "id_ami";
     public static final String TAG_PSEUDO = "pseudo";
     public static final String TAG_TELEPHONE = "tel";
 

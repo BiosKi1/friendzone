@@ -193,7 +193,8 @@ public class LoginActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       /* if (pseudo.equals("admin")){
+
+        /* if (pseudo.equals("admin")){
             return true;
         }else {
             return false;
