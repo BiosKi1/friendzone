@@ -1,0 +1,31 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 175 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 1574 0 -1
+ciMethod java/lang/Object hashCode ()I 1089 1 134 0 -1
+ciMethod java/lang/String hashCode ()I 2689 32769 721 0 -1
+ciMethod java/security/AccessController doPrivileged (Ljava/security/PrivilegedExceptionAction;)Ljava/lang/Object; 129 1 16 0 -1
+ciMethod java/util/Vector size ()I 681 1 85 0 -1
+ciMethod java/util/Vector elementAt (I)Ljava/lang/Object; 273 1 34 0 -1
+ciMethod java/util/Vector removeElementAt (I)V 105 1 13 0 -1
+ciMethod java/util/Stack pop ()Ljava/lang/Object; 105 1 13 0 -1
+ciMethod java/util/Stack peek ()Ljava/lang/Object; 113 1 14 0 -1
+ciMethod java/util/Stack empty ()Z 257 1 32 0 -1
+ciMethod java/util/ArrayList ensureCapacityInternal (I)V 337 1 42 0 -1
+ciMethod java/util/ArrayList ensureExplicitCapacity (I)V 337 1 42 0 -1
+ciMethod java/util/ArrayList grow (I)V 65 1 8 0 -1
+ciMethod java/util/ArrayList size ()I 1113 1 139 0 -1
+ciMethod java/util/ArrayList elementData (I)Ljava/lang/Object; 1921 1 240 0 -1
+ciMethod java/util/ArrayList get (I)Ljava/lang/Object; 1921 1 240 0 -1
+ciMethod java/util/ArrayList add (Ljava/lang/Object;)Z 337 1 42 0 -1
+ciMethod java/util/ArrayList rangeCheck (I)V 1921 1 240 0 -1
+ciMethod java/util/ArrayList outOfBoundsMsg (I)Ljava/lang/String; 0 0 1 0 -1
+ciMethod java/util/HashMap hash (Ljava/lang/Object;)I 2073 1 358 0 -1
+ciMethod java/util/HashMap getNode (ILjava/lang/Object;)Ljava/util/HashMap$Node; 2057 1 261 0 -1
+ciMethod java/util/HashMap containsKey (Ljava/lang/Object;)Z 97 1 12 0 -1
+ciMethod java/util/HashMap put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; 777 1 97 0 -1
+ciMethod java/util/HashMap putVal (ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; 777 9 97 0 -1
+ciMethod java/lang/Math max (II)I 225 1 28 0 -1
+ciMethodData java/lang/Object <init> ()V 2 1574 orig 264 8 30 121 80 0 0 0 0 128 4 201 20 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 49 33 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/lang/String hashCode ()I 2 11240 orig 264 8 30 121 80 0 0 0 0 0 80 201 20 0 0 0 0 152 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0 9 12 0 0 65 223 0 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 11 0 2 0 0 0 120 0 0 0 255 255 255 255 7 0 6 0 0 0 0 0 data 15 0x60007 0xa9 0x78 0xd8 0xe0007 0x1 0x58 0xd7 0x1e0007 0xd7 0x38 0x1bd4 0x2d0003 0x1bd4 0xffffffffffffffe0 oops 0

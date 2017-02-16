@@ -264,21 +264,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_a045d08b3cad94793de76c8f2a5c9135a53aa744\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
         <dex dex="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-10.0.1_105074063340b109b83ed99e7287804b066e65f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_a045d08b3cad94793de76c8f2a5c9135a53aa744\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -412,7 +412,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="b766d04fede39fd3a3bac7126cb762cc09fcf91c">
+        sha1="f5bbd07b6902399507707c0d722855352cf58d26">
         <dex dex="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_fecc546dfa3ba936044e29d1cbf0a9af64166165\classes.dex" />
     </item>
     <item
@@ -538,7 +538,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="918dd9f2180c4d6094cd80e0c5656091d5fa6f93">
+        sha1="6ffadb182048b1d4c202ded867e576f2dde826e8">
         <dex dex="C:\Users\rhakanjin.Newsco\Desktop\workspaceAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3b56eb85b45b4b242fc8f8f17d7634ce92db2d79\classes.dex" />
     </item>
     <item

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,6 +28,8 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
     private ListView listView;
 
     private String JSON_STRING;
+
+	private Button partager_position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +95,9 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String url = "http://192.168.56.1/friendzoneapi/api/api.php/?fichier=users&action=amis_liste&values[id]=4";
+                String url = "http://192.168.56.1/friendzoneapi" +
+                        "/api/api.php" +
+                        "/?fichier=users&action=amis_liste&values[id]=4";
                 String s = rh.sendGetRequest(url);
 
                 System.out.println(s);
@@ -105,9 +110,24 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		System.out.print("FSDGFDGFDGFD AAYYOOO");
+		System.out.print("FSDGFDGFDGFD AAYYOOO");
+		System.out.print("FSDGFDGFDGFD AAYYOOO");
+
+		partager_position = (Button) findViewById(R.id.connexion);
+		partager_position.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				/*Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
+				startActivity(myIntent);*/
+				System.out.print("FSDGFDGFDGFD AAYYOOO");
+				System.out.print("FSDGFDGFDGFD AAYYOOO");
+			}
+		});
         Intent intent = new Intent(this, ListeAmisActivity.class);
         HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(Config.TAG_ID_AMI).toString();
+        String empId = map.get(Config.TAG_ID_USER).toString();
+		System.out.println(empId);
         intent.putExtra(Config.EMP_ID,empId);
         startActivity(intent);
     }

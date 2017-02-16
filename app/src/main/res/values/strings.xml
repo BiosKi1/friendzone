@@ -31,4 +31,7 @@
     une miniscule, un chiffre, et doit être composé d\'au moins 6 caractères</string>
     <string name="title_activity_sign_in_maps">Map</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- Liste d'amis -->
+    <string name="partager_position">Partager position</string>
 </resources>

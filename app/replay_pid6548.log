@@ -1,0 +1,47 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 294 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 395475 0 0
+ciMethod java/lang/Object hashCode ()I 3073 1 384 0 -1
+ciMethod java/lang/Object equals (Ljava/lang/Object;)Z 4097 1 10917 0 -1
+ciMethod java/lang/String <init> ([CII)V 2881 1 7133 0 624
+ciMethod java/lang/String length ()I 3073 1 10624 0 0
+ciMethod java/lang/String charAt (I)C 4097 1 20997 0 144
+ciMethod java/lang/String equals (Ljava/lang/Object;)Z 3177 15185 1691 0 -1
+ciMethod java/lang/String startsWith (Ljava/lang/String;I)Z 2049 3417 5545 0 368
+ciMethod java/lang/String startsWith (Ljava/lang/String;)Z 3097 1 7580 0 336
+ciMethod java/lang/String hashCode ()I 2689 32769 1486 0 304
+ciMethod java/lang/String indexOf (II)I 1513 52665 3168 0 368
+ciMethod java/lang/String indexOfSupplementary (II)I 0 0 1 0 -1
+ciMethod java/lang/String substring (I)Ljava/lang/String; 2209 1 4426 0 0
+ciMethod java/lang/String substring (II)Ljava/lang/String; 2049 1 3277 0 0
+ciMethod java/lang/String intern ()Ljava/lang/String; 6145 1 768 0 -1
+ciMethod java/lang/System arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V 5121 1 640 0 -1
+ciMethod java/lang/AbstractStringBuilder <init> (I)V 1417 1 6805 0 -1
+ciMethod java/lang/AbstractStringBuilder append (Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; 2193 1 5499 0 -1
+ciMethod java/lang/AbstractStringBuilder append (C)Ljava/lang/AbstractStringBuilder; 4097 1 4130 0 -1
+ciMethod java/lang/StringBuilder <init> ()V 1065 1 6390 0 0
+ciMethod java/lang/StringBuilder append (Ljava/lang/String;)Ljava/lang/StringBuilder; 2145 1 7777 0 912
+ciMethod java/lang/StringBuilder append (C)Ljava/lang/StringBuilder; 4097 1 2969 0 0
+ciMethod java/lang/StringBuilder toString ()Ljava/lang/String; 1145 1 6399 0 0
+ciMethod java/util/HashMap hash (Ljava/lang/Object;)I 2073 1 59072 0 160
+ciMethod java/util/HashMap get (Ljava/lang/Object;)Ljava/lang/Object; 3177 1 41676 0 1584
+ciMethod java/util/HashMap getNode (ILjava/lang/Object;)Ljava/util/HashMap$Node; 2145 1 20305 0 1456
+ciMethod java/util/HashMap put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; 785 1 8012 0 2032
+ciMethod java/util/HashMap putVal (ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; 793 9 8011 0 -1
+ciMethod java/lang/Math min (II)I 4097 1 29989 0 -1
+ciMethod java/util/Arrays copyOfRange ([CII)[C 3129 1 5875 0 512
+ciMethodData java/lang/Object <init> ()V 2 395475 orig 264 8 30 121 80 0 0 0 0 128 4 224 20 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 153 54 48 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod java/lang/IllegalArgumentException <init> (Ljava/lang/String;)V 0 0 1 0 -1
+ciMethodData java/lang/String charAt (I)C 2 21003 orig 264 8 30 121 80 0 0 0 0 176 61 224 20 0 0 0 0 120 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 89 128 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 8 0 2 0 0 0 80 0 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 10 0x10007 0x0 0x40 0x500b 0xa0007 0x500b 0x30 0x0 0x120002 0x0 oops 0
+ciMethod java/util/HashMap$TreeNode getTreeNode (ILjava/lang/Object;)Ljava/util/HashMap$TreeNode; 0 0 1 0 -1
+ciMethod java/util/BitSet wordIndex (I)I 2049 1 52987 0 -1
+ciMethod java/util/BitSet checkInvariants ()V 2081 1 6142 0 -1
+ciMethod java/util/BitSet expandTo (I)V 3113 1 19046 0 -1
+ciMethod java/util/BitSet set (I)V 3097 1 13056 0 -1
+ciMethodData java/lang/String hashCode ()I 2 21782 orig 264 8 30 121 80 0 0 0 0 0 80 224 20 0 0 0 0 152 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0 241 35 0 0 177 40 2 0 0 0 0 0 0 0 0 0 2 0 0 0 1 0 11 0 2 0 0 0 120 0 0 0 255 255 255 255 7 0 6 0 0 0 0 0 data 15 0x60007 0x187 0x78 0x2f7 0xe0007 0x1 0x58 0x2f6 0x1e0007 0x2f6 0x38 0x4502 0x2d0003 0x4502 0xffffffffffffffe0 oops 0
+ciMethodData java/lang/String length ()I 2 10624 orig 264 8 30 121 80 0 0 0 0 96 60 224 20 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 128 1 0 0 1 64 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/lang/String indexOf (II)I 2 48512 orig 264 8 30 121 80 0 0 0 0 128 81 224 20 0 0 0 0 16 2 0 0 152 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 183 25 0 0 25 93 0 0 73 30 5 0 100 8 0 0 55 74 0 0 2 0 0 0 1 0 15 0 2 0 0 0 224 0 0 0 255 255 255 255 7 0 7 0 0 0 0 0 data 28 0x70007 0xba3 0x38 0x0 0xc0003 0x0 0x38 0x110007 0x4f9 0x20 0x6aa 0x190007 0x0 0x78 0x4f9 0x280007 0x439 0x58 0xa489 0x31e007 0xa3c9 0x20 0xc1 0x3a0003 0xa3c9 0xffffffffffffffc0 0x420002 0x0 oops 0
+ciMethodData java/util/Arrays copyOfRange ([CII)[C 2 5875 orig 264 8 30 121 80 0 0 0 0 0 147 243 20 0 0 0 0 120 2 0 0 240 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 135 1 0 0 97 171 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 9 0 2 0 0 0 32 1 0 0 255 255 255 255 7 0 5 0 0 0 0 0 data 36 0x50007 0x156c 0x100 0x0 0x100002 0x0 0x140005 0x0 0x0 0x0 0x0 0x0 0x190005 0x0 0x0 0x0 0x0 0x0 0x1d0005 0x0 0x0 0x0 0x0 0x0 0x200005 0x0 0x0 0x0 0x0 0x0 0x230002 0x0 0x360002 0x156d 0x390002 0x156e oops 0
+ciMethodData java/lang/String <init> ([CII)V 2 7133 orig 264 8 30 121 80 0 0 0 0 160 49 224 20 0 0 0 0 80 2 0 0 64 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 104 1 0 0 169 211 0 0 1 0 0 0 117 26 0 0 0 0 0 0 2 0 0 0 0 0 14 0 2 0 0 0 240 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 30 0x10002 0x1a75 0x50007 0x1a76 0x30 0x0 0xd0002 0x0 0x12e007 0x1a75 0x70 0x1 0x160007 0x1 0x30 0x0 0x1e0002 0x0 0x250007 0x0 0x20 0x1 0x370007 0x1a75 0x30

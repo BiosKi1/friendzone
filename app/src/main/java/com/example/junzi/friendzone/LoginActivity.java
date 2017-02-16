@@ -16,11 +16,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 /**
  * A login screen that offers login via email/password.
@@ -47,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private String Mdp;
     private String JSON_STRING;
     private Boolean identification = false;
+	private Button connexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,8 +258,16 @@ public class LoginActivity extends AppCompatActivity {
             /*showProgress(false);*/
 
             if (success) {
-                Toast.makeText(LoginActivity.this, "Redirection vers MapsActivity ici !",
-                        Toast.LENGTH_LONG).show();
+				connexion = (Button) findViewById(R.id.sign_in_button);
+				connexion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+                /*Toast.makeText(LoginActivity.this, "Redirection vers MapsActivity ici !",
+                        Toast.LENGTH_LONG).show();*/
                 /*Intent appel = new Intent(LoginActivity.this, MapsActivity.class);
                 startActivity(appel);*/
             } else {

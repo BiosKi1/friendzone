@@ -34,9 +34,9 @@
         <activity
             android:name=".listfriend"
             android:label="@string/app_name" />
-        <!--<activity
-            android:name=".ListeAmisActivity"
-            android:label="@string/app_name" />-->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
