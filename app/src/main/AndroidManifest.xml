@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ListeAmisActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
             android:name=".listfriend"
             android:label="@string/app_name" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ListeAmisActivity"
             android:label="@string/app_name" />
         <activity
             android:name=".MapsActivity"

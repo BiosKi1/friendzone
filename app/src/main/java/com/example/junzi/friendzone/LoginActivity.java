@@ -25,6 +25,9 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import static com.example.junzi.friendzone.R.id.sign_in_button;
+import static com.example.junzi.friendzone.R.id.signin;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     private String JSON_STRING;
     private Boolean identification = false;
 	private Button connexion;
+    private String id_user_co;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button SignInButton = (Button) findViewById(R.id.sign_in_button);
+        Button SignInButton = (Button) findViewById(sign_in_button);
         SignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,12 +175,13 @@ public class LoginActivity extends AppCompatActivity {
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
                 String s = rh.sendGetRequest("http://192.168.56.1/friendzoneapi/api/api.php/?" +
                         "fichier=users&action=connexion&values" +
-                        "[mail]="+Pseudo+"&values[mdp]="+Mdp);
+                        "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
 
                 if (s.contains("ok")){
+                    id_user_co = s.substring(0, 1);
                     identification = true;
                 }
-                else{
+                else if (s.contains("no_match")){
                     identification = false;
                 }
 
@@ -198,21 +203,12 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        /* if (pseudo.equals("admin")){
-            return true;
-        }else {
-            return false;
-        }*/
-
-
-        System.out.println("ici ->  ");
         System.out.println(identification);
 
         if (identification){
             return true;
         }
         return false;
-        //return pseudo.contains("@");
     }
 
     /**
@@ -255,21 +251,18 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            /*showProgress(false);*/
 
             if (success) {
-				connexion = (Button) findViewById(R.id.sign_in_button);
+				connexion = (Button) findViewById(sign_in_button);
 				connexion.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
-                        startActivity(myIntent);
-                    }
-                });
-                /*Toast.makeText(LoginActivity.this, "Redirection vers MapsActivity ici !",
-                        Toast.LENGTH_LONG).show();*/
-                /*Intent appel = new Intent(LoginActivity.this, MapsActivity.class);
-                startActivity(appel);*/
+					@Override
+					public void onClick(View view) {
+						Intent myIntent = new Intent(view.getContext(), ListeAmisActivity.class);
+						myIntent.putExtra("value_user",id_user_co);
+						startActivity(myIntent);
+
+					}
+				});
             } else {
                 PasswordView.setError(getString(R.string.error_incorrect_password));
                 PasswordView.requestFocus();

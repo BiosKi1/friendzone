@@ -15,7 +15,10 @@ public class Config {
 
     //Keys that will be used to send the request to php scripts
     public static final String KEY_EMP_ID = "id";
-    public static final String KEY_EMP_NAME = "name";
+    public static final String KEY_EMP_ID_USER = "id_user";
+    public static final String KEY_EMP_ID_AMI= "id_ami";
+
+    public static final String KEY_EMP_NAME = "nom";
     public static final String KEY_EMP_PSEUDO = "pseudo";
     public static final String KEY_EMP_TELEPHONE = "tel";
 
