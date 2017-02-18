@@ -173,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
-                String s = rh.sendGetRequest("http://192.168.56.1/friendzoneapi/api/api.php/?" +
+                String s = rh.sendGetRequest("http://192.168.150.1/projet/friendzoneapi/api/api.php/?" +
                         "fichier=users&action=connexion&values" +
                         "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
 

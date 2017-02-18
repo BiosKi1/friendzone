@@ -109,7 +109,7 @@ public class InscriptionActivity extends Activity implements View.OnClickListene
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest("http://192.168.56.1/" +
+                String s = rh.sendGetRequest("http://192.168.150.1/projet/" +
                         "friendzoneapi/api/api.php/" +
                         "?fichier=users&action=inscription" +
                         "&values[nom]=pasdechamp" +

@@ -7,11 +7,11 @@ package com.example.junzi.friendzone;
 public class Config {
 
     //Address of our scripts of the CR
-    public static final String URL_GET_ALL = "http://192.168.56.1/friendzoneapi/api/api.php?fichier=users&action=users_liste";
-    public static final String URL_CONNECT= "http://192.168.56.1/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
-    public static final String URL_GET_EMP = "http://192.168.56.1/friendzoneapi/getEmp.php?id=";
-    public static final String URL_UPDATE_EMP = "http://192.168.56.1/friendzoneapi/updateEmp.php";
-    public static final String URL_DELETE_EMP = "http://192.168.56.1/friendzoneapi/deleteEmp.php?id=";
+    public static final String URL_GET_ALL = "http://192.168.150.1/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
+    public static final String URL_CONNECT= "http://192.168.150.1/projet/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
+    public static final String URL_GET_EMP = "http://192.168.150.1/projet/friendzoneapi/getEmp.php?id=";
+    public static final String URL_UPDATE_EMP = "http://192.168.150.1/projet/friendzoneapi/updateEmp.php";
+    public static final String URL_DELETE_EMP = "http://192.168.150.1/projet/friendzoneapi/deleteEmp.php?id=";
 
     //Keys that will be used to send the request to php scripts
     public static final String KEY_EMP_ID = "id";

@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         * Au clique sur le bouton Connexion,
         * On passe sur l'activité de login
         */
-        signin = (Button) findViewById(R.id.connexion);
-        signin.setOnClickListener(new View.OnClickListener() {
+        signup = (Button) findViewById(R.id.connexion);
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
@@ -66,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        friend = (Button) findViewById(R.id.friend);
+        friend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), ListFriendActivity.class);
                 startActivity(myIntent);
             }
         });

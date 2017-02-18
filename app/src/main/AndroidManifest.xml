@@ -25,18 +25,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name" />
+
         <activity
             android:name=".InscriptionActivity"
             android:label="@string/app_name" />
-        <activity
-            android:name=".listfriend"
-            android:label="@string/app_name" />
+
         <activity
             android:name=".ListeAmisActivity"
             android:label="@string/app_name" />
+
+        <activity
+            android:name=".ListFriendActivity"
+            android:label="@string/app_name" />
+
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
