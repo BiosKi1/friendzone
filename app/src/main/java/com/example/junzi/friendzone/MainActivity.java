@@ -93,12 +93,6 @@ public class MainActivity extends AppCompatActivity {
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
                     }
-
-
-
-
-
-
                 }
                 break;
         }

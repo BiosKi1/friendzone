@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 
 
-public class InscriptionActivity extends Activity implements View.OnClickListener{
+public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText pseudo, phone, email, password;
     private Button signinBtn;
     private AwesomeValidation validation;
@@ -109,7 +110,7 @@ public class InscriptionActivity extends Activity implements View.OnClickListene
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest("http://192.168.150.1/projet/" +
+                String s = rh.sendGetRequest("http://"+Config.ip+"/projet/" +
                         "friendzoneapi/api/api.php/" +
                         "?fichier=users&action=inscription" +
                         "&values[nom]=pasdechamp" +

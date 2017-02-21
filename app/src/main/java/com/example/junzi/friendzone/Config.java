@@ -5,13 +5,13 @@ package com.example.junzi.friendzone;
  */
 
 public class Config {
-
+    public static String ip = "10.4.186.226";
     //Address of our scripts of the CR
-    public static final String URL_GET_ALL = "http://192.168.150.1/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
-    public static final String URL_CONNECT= "http://192.168.150.1/projet/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
-    public static final String URL_GET_EMP = "http://192.168.150.1/projet/friendzoneapi/getEmp.php?id=";
-    public static final String URL_UPDATE_EMP = "http://192.168.150.1/projet/friendzoneapi/updateEmp.php";
-    public static final String URL_DELETE_EMP = "http://192.168.150.1/projet/friendzoneapi/deleteEmp.php?id=";
+    public static final String URL_GET_ALL = "http://"+ip+"/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
+    public static final String URL_CONNECT= "http://"+ip+"/projet/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
+    public static final String URL_GET_EMP = "http://"+ip+"/projet/friendzoneapi/getEmp.php?id=";
+    public static final String URL_UPDATE_EMP = "http://"+ip+"/projet/friendzoneapi/updateEmp.php";
+    public static final String URL_DELETE_EMP = "http://"+ip+"/projet/friendzoneapi/deleteEmp.php?id=";
 
     //Keys that will be used to send the request to php scripts
     public static final String KEY_EMP_ID = "id";

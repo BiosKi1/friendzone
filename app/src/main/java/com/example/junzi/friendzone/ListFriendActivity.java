@@ -152,8 +152,9 @@ public class ListFriendActivity extends Activity {
 
                 }
 
-                 String s = rh.sendGetRequest("http://192.168.150.1/projet/friendzoneapi/api/api.php?" +
-                        "fichier=users&action=non_friend&"+requete+"&values[id_user]=4");
+                 String s = rh.sendGetRequest("http://"+Config.ip+"/projet/friendzoneapi/api/api.php?" +
+                        "fichier=users" +
+                         "&action=non_friend&"+requete+"&values[id_user]=4");
 
 
 
@@ -222,7 +223,10 @@ public class ListFriendActivity extends Activity {
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest("http://192.168.150.1/projet/friendzoneapi/api/api.php?fichier=users&action=add_friend&values[id_amis]="+nb);
+                String s = rh.sendGetRequest("http://"+Config.ip+"/projet" +
+                        "/friendzoneapi/api/api.php" +
+                        "?fichier=users&action=add_friend" +
+                        "&values[id_amis]="+nb);
 
 
 

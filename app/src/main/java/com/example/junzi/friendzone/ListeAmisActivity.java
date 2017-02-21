@@ -32,7 +32,6 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 	private String JSON_STRING;
 	private String id_of_user;
 	private String id_of_friend;
-
 	private String id_connexion;
 
 
@@ -103,7 +102,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 			@Override
 			protected String doInBackground(Void... params) {
 				RequestHandler rh = new RequestHandler();
-				String url = "http://192.168.150.1/projet/friendzoneapi" +
+				String url = "http://"+Config.ip+"/projet/friendzoneapi" +
 						"/api/api.php" +
 						"/?fichier=users&action=amis_liste&values[id]="+id_connexion;
 				String s = rh.sendGetRequest(url);
@@ -140,7 +139,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 				hashMap.put(Config.KEY_EMP_ID_AMI,id_of_friend);
 
 				RequestHandler rh = new RequestHandler();
-				String url = "http://192.168.150.1/projet/friendzoneapi/api/api.php" +
+				String url = "http://"+Config.ip+"/projet/friendzoneapi/api/api.php" +
 						"/?fichier=users&action=partage_position" +
 						"&values[id_user]=" +id_of_user+
 						"&values[id_ami]=" +id_of_friend+
