@@ -14,8 +14,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     Button signin;
     Button signup;
-    Button friend;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,17 +34,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        friend = (Button) findViewById(R.id.friend);
-        friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(Intent.ACTION_PICK);
-                myIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-                startActivity(myIntent);
-                finish();
-            }
-        });
-
          /*
         * Au clique sur le bouton Connexion,
         * On passe sur l'activité de login
@@ -55,16 +43,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
-                startActivity(myIntent);
-                finish();
-            }
-        });
-
-        friend = (Button) findViewById(R.id.friend);
-        friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ListFriendActivity.class);
                 startActivity(myIntent);
                 finish();
             }

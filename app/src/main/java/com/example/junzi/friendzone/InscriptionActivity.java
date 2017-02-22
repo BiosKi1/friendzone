@@ -2,6 +2,7 @@ package com.example.junzi.friendzone;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -61,7 +62,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         if(validation.validate()){
             getJSON();
             try {
-                Thread.sleep(4000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -70,6 +71,8 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 				Toast.makeText(this, "Cette adresse e-mail est déjà utlisée", Toast.LENGTH_LONG).show();
             }else if(inscription){
 				Toast.makeText(this, "Inscription prise en compte", Toast.LENGTH_LONG).show();
+                Intent myIntent = new Intent(this, MapsActivity.class);
+                startActivity(myIntent);
 			}
             else{
 				Toast.makeText(this, "Informations valides", Toast.LENGTH_LONG).show();

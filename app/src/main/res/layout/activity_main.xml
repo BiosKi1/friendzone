@@ -33,13 +33,6 @@
             android:text="@string/signinBtn"
             android:onClick="signIn" />
 
-        <Button
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:id="@+id/friend"
-            android:text="Listfriend"
-            android:onClick="friend" />
-
     </LinearLayout>
 
 
