@@ -154,7 +154,7 @@ public class ListFriendActivity extends Activity {
 
                  String s = rh.sendGetRequest("http://"+Config.ip+"/projet/friendzoneapi/api/api.php?" +
                         "fichier=users" +
-                         "&action=non_friend&"+requete+"&values[id_user]=4");
+                         "&action=non_friend&"+requete+"&values[id_user]="+Config.id_user_co);
 
 
 

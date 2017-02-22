@@ -14,7 +14,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     Button signin;
     Button signup;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

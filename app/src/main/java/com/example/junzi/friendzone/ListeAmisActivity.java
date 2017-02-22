@@ -54,7 +54,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 
 			for(int i = 0; i<result.length(); i++){
 				JSONObject jo = result.getJSONObject(i);
-				String id_user = jo.getString(Config.TAG_ID_USER);
+				String id_user = Config.id_user_co;
 				String id_ami = jo.getString(Config.TAG_ID_AMI);
 				String name = jo.getString(Config.TAG_NAME_USER);
 
@@ -99,9 +99,14 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 			@Override
 			protected String doInBackground(Void... params) {
 				RequestHandler rh = new RequestHandler();
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				String url = "http://"+Config.ip+"/projet/friendzoneapi" +
 						"/api/api.php" +
-						"/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
+						"/?fichier=users&action=amis_liste&values[id]="+id_of_user;
 				String s = rh.sendGetRequest(url);
 
 				System.out.println(s);
@@ -132,13 +137,13 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 			@Override
 			protected String doInBackground(Void... params) {
 				HashMap<String,String> hashMap = new HashMap<>();
-				hashMap.put(Config.KEY_EMP_ID_USER,id_of_user);
+				hashMap.put(Config.id_user_co,Config.id_user_co);
 				hashMap.put(Config.KEY_EMP_ID_AMI,id_of_friend);
 
 				RequestHandler rh = new RequestHandler();
 				String url = "http://"+Config.ip+"/projet/friendzoneapi/api/api.php" +
 						"/?fichier=users&action=partage_position" +
-						"&values[id_user]=" +id_of_user+
+						"&values[id_user]=" +Config.id_user_co+
 						"&values[id_ami]=" +id_of_friend+
 						"&values[partage_pos]=1";
 				String s = rh.sendPostRequest(url,hashMap);
