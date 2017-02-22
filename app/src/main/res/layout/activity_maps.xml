@@ -14,12 +14,31 @@
         tools:context="com.example.junzi.friendzone.MapsActivity"
         tools:layout="@layout/activity_maps" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/lstContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Les contacts"
+            android:onClick="listeContact"/>
+        <Button
+            android:id="@+id/addAmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter un ami"
+            android:onClick="addAmi"/>
 
-    <Button
-    android:id="@+id/setRangeButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Liste des contacts"
-    android:onClick="listeContact"/>
+        <Button
+            android:id="@+id/profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil"
+            android:onClick="Profil"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

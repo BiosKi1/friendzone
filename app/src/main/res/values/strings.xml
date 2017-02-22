@@ -13,6 +13,10 @@
     <string name="error_field_required">Ce champ est requis</string>
     <string name="error_incorrect_session">Mot de passe ou identifiant incorrect</string>
 
+    <!-- Profil activity -->
+    <string name="name">Nom</string>
+    <string name="firstName">Prénom</string>
+
     <!--Signin Activity-->
     <!-- Nom des champs et des boutons -->
     <string name="pseudo">Pseudo</string>

@@ -186,4 +186,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = new Intent(this, ListeAmisActivity.class);
         startActivity(intent);
     }
+
+    public void addAmi(View view){
+        Intent intent = new Intent(this, ListFriendActivity.class);
+        startActivity(intent);
+    }
+
+    public void Profil(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+
 }

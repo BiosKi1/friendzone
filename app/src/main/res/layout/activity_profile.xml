@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:id="@+id/profile"
+        app:layout_collapseParallaxMultiplier="1.0">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/panda"
+            android:contentDescription="image"/>
+
+        <EditText
+            android:text="@string/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nom"
+            android:paddingLeft="10dp"
+            android:textColorHint="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:enabled="false"/>
+
+        <EditText
+            android:text="@string/firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/prenom"
+            android:paddingLeft="10dp"
+            android:textColorHint="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:enabled="false" />
+
+        <EditText
+            android:text="@string/pseudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pseudo"
+            android:paddingLeft="10dp"
+            android:textColorHint="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:enabled="false"/>
+
+        <EditText
+            android:text="@string/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:paddingLeft="10dp"
+            android:textColorHint="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:enabled="false"/>
+
+        <EditText
+            android:text="@string/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_number"
+            android:paddingLeft="10dp"
+            android:textColorHint="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:enabled="false"/>
+
+        <Button
+            android:id="@+id/updateBtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Modifier"
+            android:textStyle="bold"
+            android:onClick="onClick"
+            />
+
+    </LinearLayout>
+</ScrollView>
