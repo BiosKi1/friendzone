@@ -32,14 +32,11 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 	private String JSON_STRING;
 	private String id_of_user;
 	private String id_of_friend;
-	private String id_connexion;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		id_connexion = (String) getIntent().getSerializableExtra("value_user");
 
 		setContentView(R.layout.exemple_liste_membre);
 		listView = (ListView) findViewById(R.id.listView);
@@ -104,7 +101,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 				RequestHandler rh = new RequestHandler();
 				String url = "http://"+Config.ip+"/projet/friendzoneapi" +
 						"/api/api.php" +
-						"/?fichier=users&action=amis_liste&values[id]="+id_connexion;
+						"/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
 
 				System.out.println(s);

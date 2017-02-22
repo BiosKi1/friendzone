@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     private String JSON_STRING;
     private Boolean identification = false;
 	private Button connexion;
-    private String id_user_co;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,28 +107,6 @@ public class LoginActivity extends AppCompatActivity {
         boolean cancel;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-       /* if (TextUtils.isEmpty(password)) {
-            PasswordView.setError(getString(R.string.error_field_required));
-            focusView = PasswordView;
-            cancel = true;
-        } else if (!isPasswordValid(password)) {
-            PasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = PasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid pseudo address.
-        if (TextUtils.isEmpty(pseudo)) {
-            PseudoView.setError(getString(R.string.error_field_required));
-            focusView = PseudoView;
-            cancel = true;
-        } else if (!isPseudoValid(pseudo)) {
-            PseudoView.setError(getString(R.string.error_invalid_pseudo));
-            focusView = PseudoView;
-            cancel = true;
-        }*/
-
         if (isSessionValid(pseudo, password)) {
             cancel = false;
         }
@@ -178,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                         "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
 
                 if (s.contains("ok")){
-                    id_user_co = s.substring(0, 1);
+                    Config.id_user_co = s.substring(0, 1);
                     identification = true;
                 }
                 else if (s.contains("no_match")){
@@ -257,9 +234,10 @@ public class LoginActivity extends AppCompatActivity {
 				connexion.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent myIntent = new Intent(view.getContext(), ListeAmisActivity.class);
-						myIntent.putExtra("value_user",id_user_co);
+						Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
+						/*myIntent.putExtra("value_user",Config.id_user_co);*/
 						startActivity(myIntent);
+                        finish();
 
 					}
 				});

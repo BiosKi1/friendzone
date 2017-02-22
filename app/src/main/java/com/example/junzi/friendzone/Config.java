@@ -5,7 +5,8 @@ package com.example.junzi.friendzone;
  */
 
 public class Config {
-    public static String ip = "10.4.186.226";
+    public static String ip = "10.4.184.207";
+    public static String id_user_co = "";
     //Address of our scripts of the CR
     public static final String URL_GET_ALL = "http://"+ip+"/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
     public static final String URL_CONNECT= "http://"+ip+"/projet/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
@@ -30,6 +31,8 @@ public class Config {
     public static final String TAG_ID_AMI = "id_ami";
     public static final String TAG_PSEUDO = "pseudo";
     public static final String TAG_TELEPHONE = "tel";
+    public static final String TAG_LONG_USER = "long_user";
+    public static final String TAG_LAT_USER = "lat_user";
 
     //employee id to pass with intent
     public static final String EMP_ID = "emp_id";

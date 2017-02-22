@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), InscriptionActivity.class);
                 startActivity(myIntent);
+                finish();
             }
         });
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(Intent.ACTION_PICK);
                 myIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
                 startActivity(myIntent);
+                finish();
             }
         });
 
@@ -54,19 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
                 startActivity(myIntent);
-            }
-        });
-
-         /*
-        * Au clique sur le bouton Map,
-        * On passe sur l'activité map
-        */
-        signin = (Button) findViewById(R.id.map);
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
-                startActivity(myIntent);
+                finish();
             }
         });
 
@@ -76,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), ListFriendActivity.class);
                 startActivity(myIntent);
+                finish();
             }
         });
     }

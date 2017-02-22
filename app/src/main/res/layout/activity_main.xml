@@ -40,12 +40,6 @@
             android:text="Listfriend"
             android:onClick="friend" />
 
-        <Button
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:id="@+id/map"
-            android:text="Google Map"
-            android:onClick="map" />
     </LinearLayout>
 
 
