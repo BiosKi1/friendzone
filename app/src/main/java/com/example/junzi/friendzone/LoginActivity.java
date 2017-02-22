@@ -23,6 +23,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 import static com.example.junzi.friendzone.R.id.sign_in_button;
@@ -153,9 +157,18 @@ public class LoginActivity extends AppCompatActivity {
                 String s = rh.sendGetRequest("http://"+Config.ip+"/projet/friendzoneapi/api/api.php/?" +
                         "fichier=users&action=connexion&values" +
                         "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+                    JSONObject c = result.getJSONObject(0);
+                    Config.id_user_co = c.getString(Config.TAG_ID);
 
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 if (s.contains("ok")){
-                    Config.id_user_co = s.substring(0, 1);
+                    /*Config.id_user_co = s.substring(0, 1);*/
                     identification = true;
                 }
                 else if (s.contains("no_match")){
@@ -208,7 +221,7 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 // Simulate network access.
-                Thread.sleep(500);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 return false;
             }

@@ -226,7 +226,7 @@ public class ListFriendActivity extends Activity {
                 String s = rh.sendGetRequest("http://"+Config.ip+"/projet" +
                         "/friendzoneapi/api/api.php" +
                         "?fichier=users&action=add_friend" +
-                        "&values[id_amis]="+nb);
+                        "&values[id_amis]="+nb+"&values[id_co]="+Config.id_user_co);
 
 
 

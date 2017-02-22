@@ -37,10 +37,13 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+        System.out.println(Config.id_user_co);
+        System.out.println("ID USER CO ICI 1");
 		setContentView(R.layout.exemple_liste_membre);
 		listView = (ListView) findViewById(R.id.listView);
 		listView.setOnItemClickListener(this);
+        System.out.println(Config.id_user_co);
+        System.out.println("ID USER CO ICI 2");
 		getJSON();
 	}
 
@@ -104,9 +107,11 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+                System.out.println(Config.id_user_co);
+                System.out.println("ID USER CO ICI");
 				String url = "http://"+Config.ip+"/projet/friendzoneapi" +
 						"/api/api.php" +
-						"/?fichier=users&action=amis_liste&values[id]="+id_of_user;
+						"/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
 
 				System.out.println(s);
@@ -137,10 +142,11 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 			@Override
 			protected String doInBackground(Void... params) {
 				HashMap<String,String> hashMap = new HashMap<>();
-				hashMap.put(Config.id_user_co,Config.id_user_co);
+				hashMap.put(Config.KEY_EMP_ID_USER,id_of_user);
 				hashMap.put(Config.KEY_EMP_ID_AMI,id_of_friend);
 
 				RequestHandler rh = new RequestHandler();
+
 				String url = "http://"+Config.ip+"/projet/friendzoneapi/api/api.php" +
 						"/?fichier=users&action=partage_position" +
 						"&values[id_user]=" +Config.id_user_co+
@@ -166,6 +172,10 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 
 		id_of_user = userId;
 		id_of_friend = empId;
+
+        System.out.println(id_of_user);
+        System.out.println(id_of_friend);
+        System.out.println(Config.id_user_co);
 
 		/* Passer la position en partager ou en ne plus partager */
 		partager_position();
