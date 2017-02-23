@@ -313,7 +313,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0bc96623446a83c6a29f0c0f511db8eae58edca2">
+        sha1="76dfffab6572bb91bf0729119295b2fca17172ab">
         <dex dex="C:\Users\Junzi\Desktop\ProjectAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_234e25f21a528543aadb64710dd8254b4c45a66a\classes.dex" />
     </item>
     <item
@@ -493,7 +493,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="a9d55035af9f721589ac136ec1cbf7d952e956f7">
+        sha1="8820b07264c96ee1c0820f3ec07ed5dc37822556">
         <dex dex="C:\Users\Junzi\Desktop\ProjectAndroid\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_cf934ca4f2aca174e54ad2f14b07c7755c3e8392\classes.dex" />
     </item>
     <item

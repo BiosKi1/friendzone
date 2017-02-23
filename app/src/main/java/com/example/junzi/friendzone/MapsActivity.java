@@ -104,12 +104,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
-        double lat = location.getLatitude();
+        /*double lat = location.getLatitude();
         double lng = location.getLongitude();
-        double alt = location.getAltitude();
-
+        double alt = location.getAltitude();*/
+/*
         System.out.println(lat);
-        System.out.println(lng);
+        System.out.println(lng);*/
 
         LatLng position = new LatLng(Lat_user, Long_user);
         mMap.addMarker(new MarkerOptions().position(position).title("Votre dernière position"));

@@ -5,7 +5,7 @@ package com.example.junzi.friendzone;
  */
 
 public class Config {
-    public static String ip = "192.168.0.125";
+    public static String ip = "10.4.184.8";
     public static String id_user_co = "";
     //Address of our scripts of the CR
     public static final String URL_GET_ALL = "http://"+ip+"/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
