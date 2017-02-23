@@ -37,13 +37,12 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        System.out.println(Config.id_user_co);
-        System.out.println("ID USER CO ICI 1");
+
 		setContentView(R.layout.exemple_liste_membre);
+
 		listView = (ListView) findViewById(R.id.listView);
 		listView.setOnItemClickListener(this);
-        System.out.println(Config.id_user_co);
-        System.out.println("ID USER CO ICI 2");
+
 		getJSON();
 	}
 
@@ -54,7 +53,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 		try {
 			jsonObject = new JSONObject(JSON_STRING);
 			JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-
+            
 			for(int i = 0; i<result.length(); i++){
 				JSONObject jo = result.getJSONObject(i);
 				String id_user = Config.id_user_co;

@@ -33,6 +33,8 @@ public class Config {
     public static final String TAG_TELEPHONE = "tel";
     public static final String TAG_LONG_USER = "long_user";
     public static final String TAG_LAT_USER = "lat_user";
+    public static final String TAG_LONG_AMI = "long_ami";
+    public static final String TAG_LAT_AMI = "lat_ami";
     public static final String TAG_MAIL = "mail";
     public static final String TAG_FIRST_NAME_USER = "prenom";
 

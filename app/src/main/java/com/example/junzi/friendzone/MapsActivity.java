@@ -43,8 +43,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /*private Map<Marker, Class> allMarkersMap = new HashMap<Marker, Class>;*/
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
     private GoogleMap mMap;
+    private String JSON_STRING;
     private double Long_user;
     private double Lat_user;
+    private ArrayList<LatLng> locations = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,16 +106,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
-        /*double lat = location.getLatitude();
+        double lat = location.getLatitude();
         double lng = location.getLongitude();
-        double alt = location.getAltitude();*/
-/*
-        System.out.println(lat);
-        System.out.println(lng);*/
+        /*double alt = location.getAltitude();*/
 
-        LatLng position = new LatLng(Lat_user, Long_user);
+        locations.add(new LatLng(lat, lng));
+
+        for(LatLng locationz : locations){
+            System.out.println(location);
+            mMap.addMarker(new MarkerOptions()
+                    .position(locationz)
+
+            );
+        }
+
+        /*LatLng position = new LatLng(Lat_user, Long_user);
         mMap.addMarker(new MarkerOptions().position(position).title("Votre dernière position"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));*/
     }
 
     @Override
@@ -145,6 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+                JSON_STRING = s;
                 setPosUser(s);
             }
 
@@ -167,16 +177,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void setPosUser(String s){
-        try {
-            JSONObject jsonObject = new JSONObject(s);
-            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-            JSONObject c = result.getJSONObject(0);
-            Long_user = c.getDouble(Config.TAG_LONG_USER);
-            Lat_user = c.getDouble(Config.TAG_LAT_USER);
+        JSONObject jsonObject = null;
 
-            System.out.println(Long_user);
-            System.out.println(Lat_user);
-            System.out.println("GIJFDIGJDFIGJODIFJGOIDFJGIODFJGIJDFIOGJD 6564465354654436");
+        try {
+            jsonObject = new JSONObject(JSON_STRING);
+            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+            for(int i = 0; i<result.length(); i++){
+                JSONObject c = result.getJSONObject(i);
+                Long_user = c.getDouble(Config.TAG_LONG_AMI);
+                Lat_user = c.getDouble(Config.TAG_LAT_AMI);
+
+                locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
