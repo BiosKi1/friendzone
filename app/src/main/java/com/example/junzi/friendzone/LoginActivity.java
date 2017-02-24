@@ -164,9 +164,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest("http://"+Config.ip+"/projet/friendzoneapi/api/api.php/?" +
+                String s = rh.sendGetRequest(Config.ip+"api.php/?" +
                         "fichier=users&action=connexion&values" +
                         "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
+
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
@@ -196,7 +197,7 @@ public class LoginActivity extends AppCompatActivity {
         Mdp = password;
         getJSON();
         try {
-            Thread.sleep(500);
+            Thread.sleep(4500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
