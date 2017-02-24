@@ -27,6 +27,8 @@
     <string name="connexionBtn">Se connecter</string>
 
     <!-- Texte pour les messages d'erreur -->
+    <string name="nameError">Veuillez saisir un nom valide</string>
+    <string name="firstNameError">Veuillez saisir un prénom valide</string>
     <string name="pseudoError">Veuillez saisir un pseudo valide</string>
     <string name="phoneError">Veuillez saisir un numéro de téléphone valide</string>
     <string name="phoneErrorLength">Le numéro de téléphone doit contenir 10 chiffres!</string>

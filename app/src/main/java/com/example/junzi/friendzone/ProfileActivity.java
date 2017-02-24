@@ -10,17 +10,21 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
+import android.util.Patterns;
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.InputStream;
 
 /**
  * Created by Sindy on 31/01/2017.
@@ -31,8 +35,11 @@ public class ProfileActivity extends AppCompatActivity{
     private EditText editTextNom, editTextPrenom, editTextPseudo, editTextEmail, editTextPhoneNumber;
     private String nom, prenom, pseudo, email, phoneNumber, JSON_STRING;
     private Button updateBtn;
-    private ImageView imageView;
     private Boolean success = false;
+    private AwesomeValidation validation;
+    private String regexName = "^[a-zA-Z]+([ \\-']?[a-zA-Z]+[ \\-']?[a-zA-Z]+[ \\-']?)[a-zA-Z]+$";
+    private String regexPseudo = "^[a-zA-Z0-9]+([ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?)[a-zA-Z0-9]+$";
+    private String regexPhone= "^[0-9]{2}[0-9]{8}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,6 @@ public class ProfileActivity extends AppCompatActivity{
         editTextPseudo = (EditText) findViewById(R.id.pseudo);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPhoneNumber = (EditText) findViewById(R.id.phone_number);
-
         updateBtn = (Button) findViewById(R.id.updateBtn);
 
         getJSON();
@@ -152,7 +158,6 @@ public class ProfileActivity extends AppCompatActivity{
                 if(s.contains("success_update")){
                     success = true;
                 }
-                System.out.println("heeeeeey");
                 System.out.println(success);
                 return s;
             }
@@ -168,7 +173,6 @@ public class ProfileActivity extends AppCompatActivity{
             editTextPseudo.setEnabled(true);
             editTextPhoneNumber.setEnabled(true);
             editTextEmail.setEnabled(true);
-            //Faire appelle au json ici pour réafficher les données
             updateBtn.setText("Enregistrer");
         }else if(updateBtn.getText().equals("Enregistrer")){
             nom = editTextNom.getText().toString();
@@ -177,26 +181,46 @@ public class ProfileActivity extends AppCompatActivity{
             email = editTextEmail.getText().toString();
             phoneNumber = editTextPhoneNumber.getText().toString();
 
-            editTextNom.setText(nom);
-            editTextPrenom.setText(prenom);
-            editTextPseudo.setText(pseudo);
-            editTextEmail.setText(email);
-            editTextPhoneNumber.setText(phoneNumber);
+            validation = new AwesomeValidation(ValidationStyle.BASIC);
+            validation.addValidation(this, R.id.nom, regexName, R.string.nameError);
+            validation.addValidation(this, R.id.prenom, regexName, R.string.firstNameError);
+            validation.addValidation(this, R.id.pseudo, regexPseudo, R.string.pseudoError);
+            validation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.emailError);
+            validation.addValidation(this, R.id.phone_number, regexPhone, R.string.phoneError);
 
-            update();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(success){
-                Toast.makeText(this, "Vos informations ont bien été mis à jour", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this, "Echec, vos informations n'ont pas pu être mis à jour, Contacter l'administrateur", Toast.LENGTH_LONG).show();
-            }
+            findViewById(R.id.updateBtn).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    validation.validate();
+                }
+            });
 
-            updateBtn.setText("trololo");
+            if(validation.validate()){
+                editTextNom.setText(nom);
+                editTextPrenom.setText(prenom);
+                editTextPseudo.setText(pseudo);
+                editTextEmail.setText(email);
+                editTextPhoneNumber.setText(phoneNumber);
+                update();
+
+                editTextNom.setEnabled(false);
+                editTextPrenom.setEnabled(false);
+                editTextPseudo.setEnabled(false);
+                editTextPhoneNumber.setEnabled(false);
+                editTextEmail.setEnabled(false);
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(success){
+                    Toast.makeText(this, "Vos informations ont bien été mis à jour", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this, "Echec, vos informations n'ont pas pu être mis à jour, Contacter l'administrateur", Toast.LENGTH_LONG).show();
+                }
+                updateBtn.setText("Modifier");
+            }
         }
     }
-
 }

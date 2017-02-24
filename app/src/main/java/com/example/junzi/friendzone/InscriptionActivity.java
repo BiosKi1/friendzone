@@ -25,7 +25,8 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
 
     //Expression régulière utiliser pour contrôler la validité des informations saisies
-    /*private String regexPseudo = "^(?=.*[a-z])(?=.*[A-Z])(?=\\S+$)$";*/
+    //private String regexPseudo = "^[a-z]{1}[a-z-0-9][a-zA-Z0-9]$";
+    private String regexPseudo="^[a-zA-Z0-9]+([ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?)[a-zA-Z0-9]+$";
     private String regexPhone= "^[0-9]{2}[0-9]{8}$";
     private String regexPassword="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";
     @Override
@@ -41,7 +42,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         signinBtn = (Button) findViewById(R.id.signinBtn);
 
         //Validation des champs à l'aide du Plugin Android
-        /*validation.addValidation(this, R.id.pseudo, regexPseudo, R.string.pseudoError);*/
+        validation.addValidation(this, R.id.pseudo, regexPseudo, R.string.pseudoError);
         validation.addValidation(this, R.id.phone, regexPhone, R.string.phoneError);
         validation.addValidation(this, R.id.mail, Patterns.EMAIL_ADDRESS, R.string.emailError);
         validation.addValidation(this, R.id.password, regexPassword, R.string.passwordError);
