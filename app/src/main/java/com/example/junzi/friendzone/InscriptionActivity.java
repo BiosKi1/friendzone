@@ -1,6 +1,6 @@
 package com.example.junzi.friendzone;
 
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,9 +23,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     private Boolean inscription = false, existMail = false;
     private String PseudoS, PhoneS, EmailS, PasswordS;
 
-
     //Expression régulière utiliser pour contrôler la validité des informations saisies
-    //private String regexPseudo = "^[a-z]{1}[a-z-0-9][a-zA-Z0-9]$";
     private String regexPseudo="^[a-zA-Z0-9]+([ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?[a-zA-Z0-9]+[ \\-'_]?)[a-zA-Z0-9]+$";
     private String regexPhone= "^[0-9]{2}[0-9]{8}$";
     private String regexPassword="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";

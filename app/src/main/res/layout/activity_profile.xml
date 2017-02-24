@@ -13,21 +13,6 @@
         android:id="@+id/profile"
         app:layout_collapseParallaxMultiplier="1.0">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/imageView"
-            android:contentDescription="image"/>
-        <Button
-            android:id="@+id/dlBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Modifier PP"/>
-
         <EditText
             android:text="@string/name"
             android:layout_width="match_parent"
