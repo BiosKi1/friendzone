@@ -9,34 +9,24 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.Manifest;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.example.junzi.friendzone.R.id.listView;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -44,9 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
     private GoogleMap mMap;
     private String JSON_STRING;
-    private double Long_user;
-    private double Lat_user;
     private ArrayList<LatLng> locations = new ArrayList();
+    private ArrayList<String> names = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +97,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Location location = locationManager.getLastKnownLocation(provider1);
         double lat = location.getLatitude();
         double lng = location.getLongitude();
-        /*double alt = location.getAltitude();*/
 
         locations.add(new LatLng(lat, lng));
 
@@ -116,13 +104,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             System.out.println(location);
             mMap.addMarker(new MarkerOptions()
                     .position(locationz)
+                    .title("Lolol")
 
             );
         }
-
-        /*LatLng position = new LatLng(Lat_user, Long_user);
-        mMap.addMarker(new MarkerOptions().position(position).title("Votre dernière position"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));*/
     }
 
     @Override
@@ -185,9 +170,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject c = result.getJSONObject(i);
-                Long_user = c.getDouble(Config.TAG_LONG_AMI);
-                Lat_user = c.getDouble(Config.TAG_LAT_AMI);
 
+                /*names.add(c.getString(Config.TAG_NAME_AMI+" "+c.getString(Config.TAG_PRENOM_AMI)));*/
                 locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
             }
 

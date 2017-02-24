@@ -58,11 +58,23 @@ public class LoginActivity extends AppCompatActivity {
     private String JSON_STRING;
     private Boolean identification = false;
 	private Button connexion;
+    private Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        signup = (Button) findViewById(R.id.sign_up_button1);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), InscriptionActivity.class);
+                startActivity(myIntent);
+                finish();
+            }
+        });
+
         // Set up the login form.
         PseudoView = (AutoCompleteTextView) findViewById(R.id.pseudo);
 
@@ -127,7 +139,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            /*showProgress(true);*/
             mAuthTask = new UserLoginTask(pseudo, password);
             mAuthTask.execute((Void) null);
         }
@@ -153,7 +164,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
                 String s = rh.sendGetRequest("http://"+Config.ip+"/projet/friendzoneapi/api/api.php/?" +
                         "fichier=users&action=connexion&values" +
                         "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
@@ -168,14 +178,12 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if (s.contains("ok")){
-                    /*Config.id_user_co = s.substring(0, 1);*/
                     identification = true;
                 }
                 else if (s.contains("no_match")){
                     identification = false;
                 }
 
-                System.out.println(s);
                 return s;
             }
         }
@@ -188,12 +196,10 @@ public class LoginActivity extends AppCompatActivity {
         Mdp = password;
         getJSON();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println(identification);
 
         if (identification){
             return true;
@@ -217,14 +223,6 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                return false;
-            }
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");

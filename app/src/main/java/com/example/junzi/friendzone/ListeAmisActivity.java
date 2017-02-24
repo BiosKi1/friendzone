@@ -53,7 +53,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 		try {
 			jsonObject = new JSONObject(JSON_STRING);
 			JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-            
+
 			for(int i = 0; i<result.length(); i++){
 				JSONObject jo = result.getJSONObject(i);
 				String id_user = Config.id_user_co;
@@ -101,19 +101,17 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 			@Override
 			protected String doInBackground(Void... params) {
 				RequestHandler rh = new RequestHandler();
-				try {
+				/*try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}
-                System.out.println(Config.id_user_co);
-                System.out.println("ID USER CO ICI");
+				}*/
+
 				String url = "http://"+Config.ip+"/projet/friendzoneapi" +
 						"/api/api.php" +
 						"/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
 
-				System.out.println(s);
 				return s;
 			}
 		}
@@ -172,15 +170,7 @@ public class ListeAmisActivity extends AppCompatActivity implements ListView.OnI
 		id_of_user = userId;
 		id_of_friend = empId;
 
-        System.out.println(id_of_user);
-        System.out.println(id_of_friend);
-        System.out.println(Config.id_user_co);
-
 		/* Passer la position en partager ou en ne plus partager */
 		partager_position();
-
-		/*Intent intent = new Intent(this, ListeAmisActivity.class);
-		intent.putExtra(Config.EMP_ID,empId);
-		startActivity(intent);*/
 	}
 }
