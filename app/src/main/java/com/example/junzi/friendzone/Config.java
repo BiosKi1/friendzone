@@ -5,15 +5,11 @@ package com.example.junzi.friendzone;
  */
 
 public class Config {
-    public static String ip = "10.4.186.32";
+    public static String ip = "http://friendzone01.esy.es/php/friendzoneapi/api/";
     public static String id_user_co = "";
 
     //Address of our scripts of the CR
-    public static final String URL_GET_ALL = "http://"+ip+"/projet/friendzoneapi/api/api.php?fichier=users&action=users_liste";
-    public static final String URL_CONNECT= "http://"+ip+"/projet/friendzoneapi/api/api.php/?fichier=users&action=connexion&values[mail]=jaudstin2@usnews.com&values[mdp]=gnGnAZS9z";
-    public static final String URL_GET_EMP = "http://"+ip+"/projet/friendzoneapi/getEmp.php?id=";
-    public static final String URL_UPDATE_EMP = "http://"+ip+"/projet/friendzoneapi/updateEmp.php";
-    public static final String URL_DELETE_EMP = "http://"+ip+"/projet/friendzoneapi/deleteEmp.php?id=";
+    public static final String URL_GET_ALL = ip+"api.php?fichier=users&action=users_liste";;
 
     //Keys that will be used to send the request to php scripts
     public static final String KEY_EMP_ID = "id";
