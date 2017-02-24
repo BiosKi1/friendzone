@@ -9,42 +9,33 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.Manifest;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.example.junzi.friendzone.R.id.listView;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     /*private Map<Marker, Class> allMarkersMap = new HashMap<Marker, Class>;*/
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
     private GoogleMap mMap;
-    private double Long_user;
-    private double Lat_user;
+    private String JSON_STRING;
+    private ArrayList<LatLng> locations = new ArrayList();
+    private ArrayList<String> names = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,16 +95,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
-        /*double lat = location.getLatitude();
+        double lat = location.getLatitude();
         double lng = location.getLongitude();
-        double alt = location.getAltitude();*/
-/*
-        System.out.println(lat);
-        System.out.println(lng);*/
 
-        LatLng position = new LatLng(Lat_user, Long_user);
-        mMap.addMarker(new MarkerOptions().position(position).title("Votre dernière position"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+        locations.add(new LatLng(lat, lng));
+
+        for(LatLng locationz : locations){
+            System.out.println(location);
+            mMap.addMarker(new MarkerOptions()
+                    .position(locationz)
+                    .title("Lolol")
+
+            );
+        }
     }
 
     @Override
@@ -145,6 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+                JSON_STRING = s;
                 setPosUser(s);
             }
 
@@ -167,16 +162,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void setPosUser(String s){
-        try {
-            JSONObject jsonObject = new JSONObject(s);
-            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-            JSONObject c = result.getJSONObject(0);
-            Long_user = c.getDouble(Config.TAG_LONG_USER);
-            Lat_user = c.getDouble(Config.TAG_LAT_USER);
+        JSONObject jsonObject = null;
 
-            System.out.println(Long_user);
-            System.out.println(Lat_user);
-            System.out.println("GIJFDIGJDFIGJODIFJGOIDFJGIODFJGIJDFIOGJD 6564465354654436");
+        try {
+            jsonObject = new JSONObject(JSON_STRING);
+            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+            for(int i = 0; i<result.length(); i++){
+                JSONObject c = result.getJSONObject(i);
+
+                /*names.add(c.getString(Config.TAG_NAME_AMI+" "+c.getString(Config.TAG_PRENOM_AMI)));*/
+                locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
