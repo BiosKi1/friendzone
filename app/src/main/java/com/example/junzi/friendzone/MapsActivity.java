@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import android.os.Vibrator;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -95,10 +97,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
-        double lat = location.getLatitude();
-        double lng = location.getLongitude();
+        /*double lat = location.getLatitude();
+        double lng = location.getLongitude();*/
 
-        locations.add(new LatLng(lat, lng));
+        //locations.add(new LatLng(lat, lng));
 
         for(LatLng locationz : locations){
             System.out.println(location);
@@ -107,6 +109,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title("Lolol")
 
             );
+            Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(500);
         }
     }
 

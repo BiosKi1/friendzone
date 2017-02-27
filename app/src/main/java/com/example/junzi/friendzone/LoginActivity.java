@@ -246,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
 				connexion.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent myIntent = new Intent(view.getContext(), MapsActivity.class);
+						Intent myIntent = new Intent(view.getContext(), MapActivity.class);
 						/*myIntent.putExtra("value_user",Config.id_user_co);*/
 						startActivity(myIntent);
                         finish();

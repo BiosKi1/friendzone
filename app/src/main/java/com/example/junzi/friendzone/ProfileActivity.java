@@ -110,8 +110,8 @@ public class ProfileActivity extends AppCompatActivity{
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 //Changer avec l'id de l'user co une fois que la vue est OK
-                String url = "http://"+Config.ip+"" +
-                        "/projet/friendzoneapi/api/api.php" +
+                String url = Config.ip+
+                        "api.php" +
                         "/?fichier=users" +
                         "&action=user_profil" +
                         "&values[id]="+Config.id_user_co;
@@ -144,8 +144,8 @@ public class ProfileActivity extends AppCompatActivity{
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 //Changer avec l'id de l'user co une fois que la vue est OK
-                String url = "http://"+Config.ip+"" +
-                        "/projet/friendzoneapi/api/api.php" +
+                String url = Config.ip+
+                        "api.php" +
                         "/?fichier=users" +
                         "&action=update_profil" +
                         "&values[id]="+Config.id_user_co+""+

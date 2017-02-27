@@ -40,4 +40,16 @@
 
     <!-- Liste d'amis -->
     <string name="partager_position">Partager position</string>
+    <string name="title_activity_map">MapActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu de navigation -->
+    <string name="nav_lstContact">Liste des contacts</string>
+    <string name="nav_addFriend">Ajouter un ami</string>
+    <string name="nav_profil">Profil</string>
+
 </resources>
