@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp" />
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="medium"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="5dp"
+            android:padding="2dp"
+            android:textColor="#33ccbd" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:text="text"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_weight="1"
+        android:visibility="invisible" />
+
+    <Button
+        android:text="Partager"
+        android:layout_width="wrap_content"
+        android:id="@+id/button2"
+        android:layout_marginTop="7dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="26dp"
+        android:layout_height="25dp"
+        android:id="@+id/button3"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/delete"
+         />
+
+</LinearLayout>

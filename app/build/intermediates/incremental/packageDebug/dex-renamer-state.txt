@@ -1,0 +1,7 @@
+#Tue Feb 28 23:59:07 CET 2017
+base.0=C\:\\Users\\Junzi\\Desktop\\ProjectAndroid\\friendzone\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_cf934ca4f2aca174e54ad2f14b07c7755c3e8392
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Junzi\\Desktop\\ProjectAndroid\\friendzone\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_234e25f21a528543aadb64710dd8254b4c45a66a\\classes.dex
+base.1=C\:\\Users\\Junzi\\Desktop\\ProjectAndroid\\friendzone\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_234e25f21a528543aadb64710dd8254b4c45a66a
+file.0=C\:\\Users\\Junzi\\Desktop\\ProjectAndroid\\friendzone\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_cf934ca4f2aca174e54ad2f14b07c7755c3e8392\\classes.dex
