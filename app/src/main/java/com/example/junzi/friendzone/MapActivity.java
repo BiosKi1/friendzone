@@ -26,6 +26,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -159,7 +160,16 @@ public class MapActivity extends AppCompatActivity
         }*/
         else if (id == R.id.Deconnexion)
         {
+            finish();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
+            Context context = getApplicationContext();
+            CharSequence text = "Déconnexion réussie";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         } /*else if (id == R.id.nav_send) {
         }*/
 
@@ -321,11 +331,14 @@ public class MapActivity extends AppCompatActivity
             public String doInBackground(Void... params) {
 
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(Config.ip+"api.php" +
+                String req = Config.ip+"api.php" +
                         "/?fichier=users&action=Update_Share_Pos" +
-                        "&values[id_user]=" +Config.id_user_co);
+                        "&values[id_user]=" +Config.id_user_co;
+                String s = rh.sendGetRequest(req);
 
+                System.out.println(req);
                 System.out.println(s);
+
                 return s;
             }
         }

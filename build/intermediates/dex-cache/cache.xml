@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f0c2826896c0f2b51d82df20d02d34b28cf016e4">
+        sha1="d1cfab1538828261d1e548b2b67a0f4dd6623d1c">
         <dex dex="C:\Users\Sindy\Desktop\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_e698679c899bbcd0e28e2adeed8cdabc54dd7e4d\classes.dex" />
     </item>
     <item
@@ -367,7 +367,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="fe1cb26cd41d2c615e2fa64eb2f867c672947e2c">
+        sha1="2c7015811a24a855629f36ae3cfbd8a2d5c033c4">
         <dex dex="C:\Users\Sindy\Desktop\friendzone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8f33db5e1538ac9993d58dc623e15869f92a2f30\classes.dex" />
     </item>
     <item
