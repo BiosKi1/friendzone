@@ -102,7 +102,7 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
         });
 
         txtTitle.setText(name);
-            /*imageView.setImageURI(Uri.parse(imgid.get(position)));*/
+        /*imageView.setImageURI(Uri.parse(imgid.get(position)));*/
         extratxt.setText(tel);
         return rowView;
 
