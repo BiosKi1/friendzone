@@ -6,18 +6,16 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,16 +23,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
  * Created by francis on 17/02/2017.
  */
 
-public class ListFriendActivity extends Activity {
+public class ListFriendActivity extends AppCompatActivity {
 
     ListView mListView;
     private String JSON_STRING;
@@ -42,6 +40,9 @@ public class ListFriendActivity extends Activity {
     public String res;
     final Context context = this;
     final ArrayList<String> idContact = new ArrayList<String>() ;
+    final ArrayList<String> imgList = new ArrayList<String>() ;
+    final ListFriendActivity activiter = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,13 @@ public class ListFriendActivity extends Activity {
 
                 Object o = mListView.getItemAtPosition(position);
                 String str = (String) o;
+                String mydata = str;
+                Pattern pattern = Pattern.compile("(.*?)\\(");
+                Matcher matcher = pattern.matcher(mydata);
+                if (matcher.find())
+                {
+                    str = matcher.group(1);
+                }
                 final int nb_id = Integer.parseInt(idContact.get(position));
 
                 // set title
@@ -72,7 +80,7 @@ public class ListFriendActivity extends Activity {
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Ajouter " + str + " en amis ?")
+                        .setMessage("Ajouter " + str + "en amis ?")
                         .setCancelable(false)
                         .setPositiveButton("Oui",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
@@ -124,8 +132,11 @@ public class ListFriendActivity extends Activity {
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsnobject2 = jsonArray.getJSONObject(i);
-                        String user = jsnobject2.getString("nom_user") + " - " + jsnobject2.getString("tel");
+                        String user = jsnobject2.getString("nom_user") + " (Mobile : "  + jsnobject2.getString("tel")+")";
                         arr.add(user);
+                        String  img = getImgFromContact(jsnobject2.getString("tel"));
+
+                        imgList.add(img);
                         idContact.add(jsnobject2.getString("id_user"));
                     }
 
@@ -134,8 +145,10 @@ public class ListFriendActivity extends Activity {
                 }
 
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListFriendActivity.this,
-                        android.R.layout.simple_list_item_1, arr);
+                /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListFriendActivity.this,
+                        android.R.layout.simple_list_item_1, arr);*/
+                CustomAdapterListFriend adapter =new CustomAdapterListFriend(activiter, arr, imgList);
+                mListView =(ListView)findViewById(R.id.listViewFriend);
                 mListView.setAdapter(adapter);
 
             }
@@ -152,11 +165,8 @@ public class ListFriendActivity extends Activity {
 
                 }
 
-                 String s = rh.sendGetRequest(Config.ip+"api.php?" +
-                        "fichier=users" +
-                         "&action=non_friend&"+requete+"&values[id_user]="+Config.id_user_co);
-
-
+                String s = rh.sendGetRequest(Config.ip+"api.php/?" +
+                        "fichier=users&action=non_friend&"+requete+"&values[id_user]="+Config.id_user_co);
 
                 return s;
             }
@@ -223,10 +233,7 @@ public class ListFriendActivity extends Activity {
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest("http://"+Config.ip+"/projet" +
-                        "/friendzoneapi/api/api.php" +
-                        "?fichier=users&action=add_friend" +
-                        "&values[id_amis]="+nb+"&values[id_co]="+Config.id_user_co);
+                String s = rh.sendGetRequest(Config.ip+"api.php/?fichier=users&action=add_friend&values[id_amis]="+nb+"&values[id_co]="+Config.id_user_co);
 
 
 
@@ -256,6 +263,8 @@ public class ListFriendActivity extends Activity {
                 String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
                 if (name != "") {
                     output.add(name);
+                }else{
+                    output.add(" ");
                 }
             }
         }
@@ -301,10 +310,17 @@ public class ListFriendActivity extends Activity {
 
                     while (phoneCursor.moveToNext()) {
                         int phoneType = phoneCursor.getInt(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                        String photo = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI));
+                        String name = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+
+
+
                         if (phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
                         {
                             phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
-                            phoneNumber = phoneNumber.replaceAll("\\s", "");
+                            phoneNumber = phoneNumber.replaceAll(" ", "");
+                            Toast.makeText(context, phoneNumber, Toast.LENGTH_SHORT).show();
                             output.add(phoneNumber);
                         }
 
@@ -322,6 +338,70 @@ public class ListFriendActivity extends Activity {
 
         return output;
 
+    }
+
+    public String getImgFromContact(String tel){
+        String imgString = "";
+        String phoneNumber = "";
+        Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;
+        String _ID = ContactsContract.Contacts._ID;
+        String HAS_PHONE_NUMBER = ContactsContract.Contacts.HAS_PHONE_NUMBER;
+        Uri PhoneCONTENT_URI = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        String Phone_CONTACT_ID = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
+
+        ContentResolver contentResolver = getContentResolver();
+
+        Cursor cursor = contentResolver.query(CONTENT_URI, null,null, null, null);
+
+        // Loop for every contact in the phone
+        if (cursor.getCount() > 0) {
+
+            while (cursor.moveToNext()) {
+
+                String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
+                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
+
+                if (hasPhoneNumber > 0) {
+
+
+                    // Query and loop for every phone number of the contact
+                    Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[] { contact_id }, null);
+
+                    while (phoneCursor.moveToNext()) {
+                        int phoneType = phoneCursor.getInt(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                        String photo = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI));
+                        String name = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+
+
+
+                        if (phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+                        {
+                            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
+                            phoneNumber = phoneNumber.replaceAll(" ", "");
+
+                            if( tel.equals(phoneNumber.toString()) ){
+                                return photo;
+                            }else {
+                                Uri path = Uri.parse("android.resource://com.example.junzi.friendzone/" + R.drawable.imgdefault);
+                                imgString = path.toString();
+                            }
+
+                        }
+
+
+                    }
+
+                    phoneCursor.close();
+
+                }
+
+
+            }
+
+        }
+
+        return imgString;
     }
 
 }
