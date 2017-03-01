@@ -165,9 +165,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequest(Config.ip+"api.php/?" +
+                String req = Config.ip+"api.php/?" +
                         "fichier=users&action=connexion&values" +
-                        "[pseudo]="+Pseudo+"&values[mdp]="+Mdp);
+                        "[pseudo]="+Pseudo+"&values[mdp]="+Mdp;
+                String s = rh.sendGetRequest(req);
+
+                System.out.println(req);
+                System.out.println(req);
+                System.out.println(req);
+                System.out.println(req);
+                System.out.println(req);
+                System.out.println(req);
+
 
                 try {
                     JSONObject jsonObject = new JSONObject(s);
@@ -198,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
         Mdp = password;
         getJSON();
         try {
-            Thread.sleep(4500);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
