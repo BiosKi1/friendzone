@@ -31,30 +31,4 @@
             android:text="text"
             />
     </LinearLayout>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text=""
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_weight="1"
-        android:visibility="invisible" />
-
-    <Button
-        android:text="Partager"
-        android:layout_width="wrap_content"
-        android:id="@+id/button2"
-        android:layout_marginTop="7dp"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="26dp"
-        android:layout_height="25dp"
-        android:id="@+id/button3"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/delete"
-         />
-
 </LinearLayout>

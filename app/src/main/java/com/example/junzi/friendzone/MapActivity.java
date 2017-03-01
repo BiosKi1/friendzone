@@ -82,7 +82,7 @@ public class MapActivity extends AppCompatActivity
 
         getPositionCurrentUser();
         try {
-            Thread.sleep(4000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -218,10 +218,10 @@ public class MapActivity extends AppCompatActivity
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
-        double lat = location.getLatitude();
+        /*double lat = location.getLatitude();
         double lng = location.getLongitude();
 
-        locations.add(new LatLng(lat, lng));
+        locations.add(new LatLng(lat, lng));*/
 
         for(LatLng locationz : locations){
             System.out.println(location);
@@ -296,7 +296,9 @@ public class MapActivity extends AppCompatActivity
             for(int i = 0; i<result.length(); i++){
                 JSONObject c = result.getJSONObject(i);
 
-                /*names.add(c.getString(Config.TAG_NAME_AMI+" "+c.getString(Config.TAG_PRENOM_AMI)));*/
+                /*names.add(c.getString(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI)));*/
+                System.out.println("lalala");
+                System.out.println(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI));
                 locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
             }
 
