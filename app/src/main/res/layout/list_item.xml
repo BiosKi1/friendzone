@@ -45,6 +45,7 @@
     <Button
         android:text="Partager"
         android:layout_width="wrap_content"
+        android:textColor="@color/txtPartage"
         android:id="@+id/button2"
         android:layout_marginTop="7dp"
         android:layout_height="wrap_content" />

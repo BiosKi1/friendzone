@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Modifier"
+            android:textColor="@color/txtPartage"
             android:onClick="onClick" />
 
     </LinearLayout>

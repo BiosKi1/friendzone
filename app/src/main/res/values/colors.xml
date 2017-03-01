@@ -9,6 +9,8 @@
     <color name="colorPop">#EAA6A6</color>
 
     <color name="base">#AAAAAA</color>
+    <color name="txtPartage">#f1f1f1</color>
+    <color name="buttonPartage">#FF6240</color>
 
     <color name="Accueil">#BD3434</color>
     <color name="backgroundMain">#D64D4D</color>

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Friend Zone</string>
 
+    <!-- Nom activité -->
+    <string name="app_profil">Profil</string>
+    <string name="app_liste">Liste des contacts</string>
+    <string name="app_ajout">Ajouter un ami</string>
+    <string name="app_insciprtion">Inscription</string>
+
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
     <string name="prompt_password">Mot de passe</string>

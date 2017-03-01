@@ -9,7 +9,7 @@
 
         <item name="android:navigationBarColor">@color/colorNav</item>
 
-        <item name="colorButtonNormal">@color/colorButton</item>
+        <item name="colorButtonNormal">@color/buttonPartage</item>
 
     </style>
 

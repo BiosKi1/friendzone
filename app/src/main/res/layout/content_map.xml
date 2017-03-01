@@ -21,9 +21,9 @@
 
     <Button
         android:id="@+id/partage_Pos"
-        android:textColor="@color/base"
+        android:textColor="@color/txtPartage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Partager ma position"/>
+        android:text="Partager position"/>
 
 </RelativeLayout>
