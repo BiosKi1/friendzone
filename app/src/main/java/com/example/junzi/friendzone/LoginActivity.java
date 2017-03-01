@@ -201,12 +201,13 @@ public class LoginActivity extends AppCompatActivity {
         Mdp = password;
         getJSON();
         try {
-            Thread.sleep(1500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         if (identification){
+            System.out.println(identification);
             return true;
         }
         return false;
