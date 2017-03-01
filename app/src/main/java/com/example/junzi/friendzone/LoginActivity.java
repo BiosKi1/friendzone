@@ -207,7 +207,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (identification){
-            System.out.println(identification);
             return true;
         }
         return false;
