@@ -9,6 +9,8 @@
 
         <item name="android:navigationBarColor">@color/colorNav</item>
 
+        <item name="colorButtonNormal">@color/colorButton</item>
+
     </style>
 
     <style name="AppTheme.RandomNoStatusBar" parent="Theme.AppCompat.NoActionBar">
