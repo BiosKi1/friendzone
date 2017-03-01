@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <item name="android:navigationBarColor">@color/colorNav</item>
+
     </style>
 
     <style name="AppTheme.RandomNoStatusBar" parent="Theme.AppCompat.NoActionBar">
@@ -18,7 +22,8 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
 
 
-        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorButtonNormal">@color/colorButton</item>
+        
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

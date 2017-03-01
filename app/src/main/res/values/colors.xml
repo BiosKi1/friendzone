@@ -2,11 +2,16 @@
 <resources>
     <color name="colorPrimary">#972929</color>
     <color name="colorPrimaryDark">#501F1F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorAccent">#EAA6A6</color>
     <color name="colorNav">#3F1111</color>
+
+    <color name="colorButton">#EAA6A6</color>
+    <color name="colorPop">#EAA6A6</color>
 
     <color name="base">#AAAAAA</color>
 
     <color name="Accueil">#BD3434</color>
-    <color name="backgroundMain">#D23A3A</color>
+    <color name="backgroundMain">#D64D4D</color>
+    <color name="saveBackup">#D23A3A</color>
 </resources>
