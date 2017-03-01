@@ -230,8 +230,12 @@ public class MapActivity extends AppCompatActivity
                     .title("Lolol")
 
             );
-            Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(500);
+            if(locations.size() > 0)
+            {
+                System.out.println(locations.size());
+                Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+                v.vibrate(500);
+            }
         }
     }
 
