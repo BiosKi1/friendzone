@@ -171,12 +171,6 @@ public class LoginActivity extends AppCompatActivity {
                 String s = rh.sendGetRequest(req);
 
                 System.out.println(req);
-                System.out.println(req);
-                System.out.println(req);
-                System.out.println(req);
-                System.out.println(req);
-                System.out.println(req);
-
 
                 try {
                     JSONObject jsonObject = new JSONObject(s);
@@ -207,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
         Mdp = password;
         getJSON();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
