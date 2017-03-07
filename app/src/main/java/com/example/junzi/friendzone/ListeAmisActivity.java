@@ -85,7 +85,6 @@ public class ListeAmisActivity extends AppCompatActivity {
 				part.add(jo.getString("par"));
 				System.out.print(img+" "+name);
 				list.add(name+ " (Mobile : "  + jo.getString("tel")+")");
-				Toast.makeText(activiter, name, Toast.LENGTH_SHORT).show();
 			}
 
 

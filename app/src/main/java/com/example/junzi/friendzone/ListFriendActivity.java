@@ -320,7 +320,6 @@ public class ListFriendActivity extends AppCompatActivity {
                         {
                             phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
                             phoneNumber = phoneNumber.replaceAll(" ", "");
-                            Toast.makeText(context, phoneNumber, Toast.LENGTH_SHORT).show();
                             output.add(phoneNumber);
                         }
 
