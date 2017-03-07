@@ -367,7 +367,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="cf1f0007743deddf4b8d5ded75731256b379281a">
+        sha1="c88f00d2f38125534daf7888803b22899d87493f">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_998c276e2db3fe823e49f9f95d578bc033030cab/classes.dex" />
     </item>
     <item
@@ -610,7 +610,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e0d6f732c6e2135502aa9213a1c030e523d9353c">
+        sha1="2339a326bf26a545af6769178cd8681cf3b0e087">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9dff5c707f05b49fbf856f5e3b0c48ef24e0407a/classes.dex" />
     </item>
 

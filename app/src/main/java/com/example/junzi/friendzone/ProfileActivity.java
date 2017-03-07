@@ -3,6 +3,7 @@ package com.example.junzi.friendzone;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         id_connexion = (String) getIntent().getSerializableExtra("value_user");
         setContentView(R.layout.activity_profile);
         Intent intent = getIntent();
@@ -55,6 +57,12 @@ public class ProfileActivity extends AppCompatActivity{
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPhoneNumber = (EditText) findViewById(R.id.phone_number);
         updateBtn = (Button) findViewById(R.id.updateBtn);
+
+        editTextNom.setTextColor(Color.parseColor("#000000"));
+        editTextPrenom.setTextColor(Color.parseColor("#000000"));
+        editTextPseudo.setTextColor(Color.parseColor("#000000"));
+        editTextEmail.setTextColor(Color.parseColor("#000000"));
+        editTextPhoneNumber.setTextColor(Color.parseColor("#000000"));
 
         getJSON();
     }
