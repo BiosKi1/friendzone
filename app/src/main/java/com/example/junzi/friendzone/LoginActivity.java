@@ -1,273 +1,113 @@
 package com.example.junzi.friendzone;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
-import android.os.Build;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.junzi.friendzone.Config;
+import com.example.junzi.friendzone.MapActivity;
+import com.example.junzi.friendzone.R;
+import com.example.junzi.friendzone.RequestHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 
-import static com.example.junzi.friendzone.R.id.sign_in_button;
-import static com.example.junzi.friendzone.R.id.signin;
+public class LoginActivity extends ActionBarActivity {
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity {
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+    private EditText editTextUserName;
+    private EditText editTextPassword;
 
-    // UI references.
-    private AutoCompleteTextView PseudoView;
-    private EditText PasswordView;
-    private View ProgressView;
-    private View LoginFormView;
-    private String Pseudo;
-    private String Mdp;
-    private String JSON_STRING;
-    private Boolean identification = false;
-	private Button connexion;
-    private Button signup;
+    public static final String USER_NAME = "USERNAME";
+
+    String username;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        signup = (Button) findViewById(R.id.sign_up_button1);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), InscriptionActivity.class);
-                startActivity(myIntent);
-                finish();
-            }
-        });
-
-        // Set up the login form.
-        PseudoView = (AutoCompleteTextView) findViewById(R.id.pseudo);
-
-        PasswordView = (EditText) findViewById(R.id.password);
-        PasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button SignInButton = (Button) findViewById(sign_in_button);
-        SignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
-
-        LoginFormView = findViewById(R.id.login_form);
-        ProgressView = findViewById(R.id.login_progress);
+        editTextUserName = (EditText) findViewById(R.id.pseudo);
+        editTextPassword = (EditText) findViewById(R.id.password);
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+    public void invokeLogin(View view){
+        username = editTextUserName.getText().toString();
+        password = editTextPassword.getText().toString();
 
-        // Reset errors.
-        PseudoView.setError(null);
-        PasswordView.setError(null);
+        login(username,password);
 
-        // Store values at the time of the login attempt.
-        String pseudo = PseudoView.getText().toString();
-        String password = PasswordView.getText().toString();
-
-        boolean cancel;
-        View focusView = null;
-
-        if (isSessionValid(pseudo, password)) {
-            cancel = false;
-        }
-        else {
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-                PasswordView.setError(getString(R.string.error_incorrect_session));
-                PasswordView.requestFocus();
-                /*focusView.requestFocus();*/
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            mAuthTask = new UserLoginTask(pseudo, password);
-            mAuthTask.execute((Void) null);
-        }
     }
 
-    private void getJSON(){
-        class GetJSON extends AsyncTask<Void,Void,String>{
+    private void login(final String username, String password) {
 
-            ProgressDialog loading;
+        class LoginAsync extends AsyncTask<String, Void, String>{
+
+            private Dialog loadingDialog;
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LoginActivity.this,"Fetching Data","Wait...",false,false);
+                loadingDialog = ProgressDialog.show(LoginActivity.this, "Patientez", "Chargement...");
             }
 
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                JSON_STRING = s;
-            }
+            protected String doInBackground(String... params) {
+                String uname = params[0];
+                String pass = params[1];
 
-            @Override
-            protected String doInBackground(Void... params) {
-                RequestHandler rh = new RequestHandler();
-                String req = Config.ip+"api.php/?" +
-                        "fichier=users&action=connexion&values" +
-                        "[pseudo]="+Pseudo+"&values[mdp]="+Mdp;
-                String s = rh.sendGetRequest(req);
-
-                System.out.println(req);
-
+                String s = null;
                 try {
-                    JSONObject jsonObject = new JSONObject(s);
-                    JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-                    JSONObject c = result.getJSONObject(0);
-                    Config.id_user_co = c.getString(Config.TAG_ID);
+                    RequestHandler rh = new RequestHandler();
+                    String req = Config.ip + "api.php/?" +
+                            "fichier=users&action=connexion&values" +
+                            "[pseudo]=" + uname + "&values[mdp]=" + pass;
+                    s = rh.sendGetRequest(req);
+
+                    try {
+                        JSONObject jsonObject = new JSONObject(s);
+                        JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+                        JSONObject c = result.getJSONObject(0);
+                        Config.id_user_co = c.getString(Config.TAG_ID);
 
 
-                } catch (JSONException e) {
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (s.contains("ok")){
-                    identification = true;
-                }
-                else if (s.contains("no_match")){
-                    identification = false;
-                }
-
                 return s;
             }
-        }
-        GetJSON gj = new GetJSON();
-        gj.execute();
-    }
 
-    private boolean isSessionValid(String pseudo, String password) {
-        Pseudo = pseudo;
-        Mdp = password;
-        getJSON();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            @Override
+            protected void onPostExecute(String result){
+                loadingDialog.dismiss();
 
-        if (identification){
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mPseudo;
-        private final String mPassword;
-
-        UserLoginTask(String pseudo, String password) {
-            mPseudo = pseudo;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mPseudo)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                System.out.println(Config.id_user_co);
+                System.out.println("MMZ");
+                if(result.contains("ok")){
+                    Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                    intent.putExtra(USER_NAME, username);
+                    finish();
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), "Pseudo ou mot de passe incorrect", Toast.LENGTH_LONG).show();
                 }
             }
-
-            // TODO: register the new account here.
-            return true;
         }
 
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+        LoginAsync la = new LoginAsync();
+        la.execute(username, password);
 
-            if (success) {
-				connexion = (Button) findViewById(sign_in_button);
-				connexion.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						Intent myIntent = new Intent(view.getContext(), MapActivity.class);
-						/*myIntent.putExtra("value_user",Config.id_user_co);*/
-						startActivity(myIntent);
-                        finish();
-
-					}
-				});
-            } else {
-                PasswordView.setError(getString(R.string.error_incorrect_password));
-                PasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            /*showProgress(false);*/
-        }
     }
 }
-

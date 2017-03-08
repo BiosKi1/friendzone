@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -57,52 +58,57 @@ public class ListFriendActivity extends AppCompatActivity {
         ArrayList<String>  nb = fetchContactsNb();
 
 
-        getJSON(nb);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        if (!nb.isEmpty()){
+            getJSON(nb);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Aucun ami disponible", Toast.LENGTH_LONG).show();
+        }
+        if (!nb.isEmpty()) {
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-                Object o = mListView.getItemAtPosition(position);
-                String str = (String) o;
-                String mydata = str;
-                Pattern pattern = Pattern.compile("(.*?)\\(");
-                Matcher matcher = pattern.matcher(mydata);
-                if (matcher.find())
-                {
-                    str = matcher.group(1);
+                    Object o = mListView.getItemAtPosition(position);
+                    String str = (String) o;
+                    String mydata = str;
+                    Pattern pattern = Pattern.compile("(.*?)\\(");
+                    Matcher matcher = pattern.matcher(mydata);
+                    if (matcher.find()) {
+                        str = matcher.group(1);
+                    }
+                    final int nb_id = Integer.parseInt(idContact.get(position));
+
+                    // set title
+                    alertDialogBuilder.setTitle("Retrouver des amis ");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Ajouter " + str + "en amis ?")
+                            .setCancelable(false)
+                            .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    getJSONAdd(nb_id);
+
+                                }
+                            })
+                            .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
                 }
-                final int nb_id = Integer.parseInt(idContact.get(position));
-
-                // set title
-                alertDialogBuilder.setTitle("Retrouver des amis ");
-
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Ajouter " + str + "en amis ?")
-                        .setCancelable(false)
-                        .setPositiveButton("Oui",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-
-                                getJSONAdd(nb_id);
-
-                            }
-                        })
-                        .setNegativeButton("Non",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-            }
-        });
-
+            });
+        }
     }
 
 

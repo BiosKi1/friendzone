@@ -217,11 +217,11 @@ public class ProfileActivity extends AppCompatActivity{
                 editTextPhoneNumber.setEnabled(false);
                 editTextEmail.setEnabled(false);
 
-                try {
+                /*try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
                 if(success){
                     Toast.makeText(this, "Vos informations ont bien été mis à jour", Toast.LENGTH_LONG).show();
                 }else{
