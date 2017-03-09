@@ -1,19 +1,21 @@
 package com.example.junzi.friendzone;
 
-import android.*;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -31,7 +33,10 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -39,7 +44,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MapActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
@@ -49,8 +53,7 @@ public class MapActivity extends AppCompatActivity
     private String JSON_STRING;
     private ArrayList<LatLng> locations = new ArrayList();
     private ArrayList<String> names = new ArrayList();
-    private String id_of_user;
-    private String id_of_friend;
+    private ArrayList<Integer> tel_friends = new ArrayList();
 
 
     @Override
@@ -59,17 +62,6 @@ public class MapActivity extends AppCompatActivity
         setContentView(R.layout.activity_map);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*
-        Boouton de mail useless
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -218,26 +210,56 @@ public class MapActivity extends AppCompatActivity
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
+
         /*double lat = location.getLatitude();
         double lng = location.getLongitude();
 
         locations.add(new LatLng(lat, lng));*/
 
+        int i = 0;
+
+        /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
         for(LatLng locationz : locations){
-            System.out.println(location);
+            /*Gestion de la photo des contact sur la map*/
+            Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+            Bitmap bitmap = Bitmap.createBitmap(80, 80, conf);
+            Bitmap marker = BitmapFactory.decodeResource(getResources(), R.drawable.imgdefault2);
+            Bitmap newMarker = marker.copy(Bitmap.Config.ARGB_8888, true);
+            Canvas canvas = new Canvas(newMarker);
+            // Offset the drawing by 25x25
+           /* canvas.drawBitmap(bitmap, 25, 25, null);*/
+
+            // paint defines the text color, stroke width and size
+            Paint color = new Paint();
+            color.setTextSize(35);
+            color.setColor(Color.BLACK);
+
+            canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                    R.drawable.imgdefault2), 0,0, color);
+
+            /*Ajout du markeur avec les paramètre sur la map*/
             mMap.addMarker(new MarkerOptions()
                     .position(locationz)
-                    .title("Lolol")
+                    .title(names.get(i))
+                    .snippet(""+tel_friends.get(i))
+                    // Pour avoir les markers avec une couleur choisi random pour chaque friend
+                    //.icon(BitmapDescriptorFactory.defaultMarker(new Random().nextInt(360)))
+
+                    .icon(BitmapDescriptorFactory.fromBitmap(newMarker))
+
 
             );
+            i++;
+
+            /*Faire vibrer le téléphone si l'utilisateur a des amis sur la map*/
             if(locations.size() > 0)
             {
-                System.out.println(locations.size());
                 Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
                 v.vibrate(500);
             }
         }
-    }
+
+   }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -276,7 +298,6 @@ public class MapActivity extends AppCompatActivity
             public String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
 
-                /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
                 String s = rh.sendGetRequest(Config.ip+"api.php" +
                         "?fichier=users&action=user_position" +
                         "&values[id]="+Config.id_user_co);
@@ -297,12 +318,17 @@ public class MapActivity extends AppCompatActivity
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
 
+            /*Récupération du JSON et assignement des infos utilisateur et friends*/
             for(int i = 0; i<result.length(); i++){
                 JSONObject c = result.getJSONObject(i);
 
-                /*names.add(c.getString(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI)));*/
-                System.out.println("lalala");
-                System.out.println(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI));
+                /*Ajoute les noms et prénoms des amis dans le arrayList*/
+                names.add(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI));
+
+                /*Ajoute le tel des freinds dans le arrayList*/
+                tel_friends.add(c.getInt(Config.TAG_TELEPHONE));
+
+                /*Ajouter la position des firends dans le arrayList*/
                 locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
             }
 
@@ -353,18 +379,4 @@ public class MapActivity extends AppCompatActivity
         gj.execute();
 
     }
-    /*public void listeContact(View view){
-        Intent intent = new Intent(this, ListeAmisActivity.class);
-        startActivity(intent);
-    }
-
-    public void addAmi(View view){
-        Intent intent = new Intent(this, ListFriendActivity.class);
-        startActivity(intent);
-    }
-
-    public void Profil(View view){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }*/
 }
