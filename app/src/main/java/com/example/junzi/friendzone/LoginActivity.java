@@ -3,12 +3,14 @@ package com.example.junzi.friendzone;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,10 +28,11 @@ public class LoginActivity extends ActionBarActivity {
     private EditText editTextUserName;
     private EditText editTextPassword;
 
-    public static final String USER_NAME = "USERNAME";
+    private static final String PREF_USER_NAME = "PREF_USER_NAME";
 
     String username;
     String password;
+    Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,17 @@ public class LoginActivity extends ActionBarActivity {
 
         editTextUserName = (EditText) findViewById(R.id.pseudo);
         editTextPassword = (EditText) findViewById(R.id.password);
+
+        /* Listener pour le bouton inscription */
+        signup = (Button) findViewById(R.id.sign_up_button1);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), InscriptionActivity.class);
+                startActivity(myIntent);
+                finish();
+            }
+        });
     }
 
     public void invokeLogin(View view){
@@ -93,11 +107,12 @@ public class LoginActivity extends ActionBarActivity {
             protected void onPostExecute(String result){
                 loadingDialog.dismiss();
 
-                System.out.println(Config.id_user_co);
-                System.out.println("MMZZZZ");
                 if(result.contains("ok")){
+                    /*SaveSharedPreference.setUserName(LoginActivity.this, PREF_USER_NAME);*/
+                    SaveSharedPreference.setUserId(LoginActivity.this, Config.id_user_co);
+
                     Intent intent = new Intent(LoginActivity.this, MapActivity.class);
-                    intent.putExtra(USER_NAME, username);
+
                     finish();
                     startActivity(intent);
                 }else {
@@ -108,6 +123,5 @@ public class LoginActivity extends ActionBarActivity {
 
         LoginAsync la = new LoginAsync();
         la.execute(username, password);
-
     }
 }

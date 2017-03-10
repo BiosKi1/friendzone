@@ -70,7 +70,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 				Toast.makeText(this, "Cette adresse e-mail est déjà utlisée", Toast.LENGTH_LONG).show();
             }else if(inscription){
 				Toast.makeText(this, "Inscription prise en compte", Toast.LENGTH_LONG).show();
-                Intent myIntent = new Intent(this, MapsActivity.class);
+                Intent myIntent = new Intent(this, MapActivity.class);
                 startActivity(myIntent);
 			}
             else{

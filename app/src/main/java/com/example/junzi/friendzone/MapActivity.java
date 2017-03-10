@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -154,8 +155,15 @@ public class MapActivity extends AppCompatActivity
         }*/
         else if (id == R.id.Deconnexion)
         {
+            /*SharedPreferences preferences =getSharedPreferences("PREF_USER_ID",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.commit();
+            editor.apply();*/
+            SaveSharedPreference.removepreferences(this);
             finish();
-            Intent intent = new Intent(this, LoginActivity.class);
+
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
             Context context = getApplicationContext();

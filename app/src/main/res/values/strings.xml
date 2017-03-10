@@ -5,7 +5,8 @@
     <string name="app_profil">Profil</string>
     <string name="app_liste">Liste des contacts</string>
     <string name="app_ajout">Ajouter un ami</string>
-    <string name="app_insciprtion">Inscription</string>
+    <string name="app_inscription">Inscription</string>
+    <string name="app_connexion">Connexion</string>
 
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
