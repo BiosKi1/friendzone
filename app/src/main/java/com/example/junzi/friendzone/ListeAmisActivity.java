@@ -130,7 +130,7 @@ public class ListeAmisActivity extends AppCompatActivity {
 				System.out.println(Config.id_user_co);
 				System.out.println("ID USER CO ICI");
 
-				String url = Config.ip +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
+				String url = Config.url +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
 
 				return s;

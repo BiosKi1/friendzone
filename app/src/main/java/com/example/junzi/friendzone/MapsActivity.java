@@ -152,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 RequestHandler rh = new RequestHandler();
 
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
-                String s = rh.sendGetRequest(Config.ip+"api.php" +
+                String s = rh.sendGetRequest(Config.url+"api.php" +
                         "?fichier=users&action=user_position" +
                         "&values[id]="+Config.id_user_co);
 

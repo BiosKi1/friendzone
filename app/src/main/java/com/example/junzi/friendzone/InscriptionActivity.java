@@ -112,7 +112,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest(Config.ip+"api.php/" +
+                String s = rh.sendGetRequest(Config.url+"api.php/" +
                         "?fichier=users&action=inscription" +
                         "&values[nom]=pasdechamp" +
                         "&values[prenom]=pasdechamp" +

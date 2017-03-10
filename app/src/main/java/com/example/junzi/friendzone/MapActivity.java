@@ -38,6 +38,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -218,6 +220,10 @@ public class MapActivity extends AppCompatActivity
 
         int i = 0;
 
+        //On déclare le polyline, c'est-à-dire le trait (ici bleu) que l'on ajoute sur la carte pour tracer l'itinéraire
+
+
+
         /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
         for(LatLng locationz : locations){
             /*Gestion de la photo des contact sur la map*/
@@ -237,6 +243,17 @@ public class MapActivity extends AppCompatActivity
             canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
                     R.drawable.imgdefault2), 0,0, color);
 
+
+           /* final PolylineOptions polylines = new PolylineOptions();
+            polylines.color(Color.BLUE);
+
+            //On construit le polyline
+            for(final LatLng latLng : locations) {
+                System.out.println("dsfgdgdgfd MMZ");
+                polylines.add(locationz);
+            }*/
+
+
             /*Ajout du markeur avec les paramètre sur la map*/
             mMap.addMarker(new MarkerOptions()
                     .position(locationz)
@@ -250,6 +267,17 @@ public class MapActivity extends AppCompatActivity
 
             );
             i++;
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            LatLng pos_user = new LatLng(lat, lng);
+
+            /*Permet de mettre le trajet sur la map , geodesic(true) est supposé mettre
+             l'itinéraire avec des virages mais il fait que une ligne droite*/
+            Polyline line = mMap.addPolyline(new PolylineOptions()
+                    .add(pos_user, locationz)
+                    .width(5)
+                    .color(Color.RED)
+                    .geodesic(true));
 
             /*Faire vibrer le téléphone si l'utilisateur a des amis sur la map*/
             if(locations.size() > 0)
@@ -258,6 +286,15 @@ public class MapActivity extends AppCompatActivity
                 v.vibrate(500);
             }
         }
+        /*double lat = location.getLatitude();
+        double lng = location.getLongitude();*/
+        //LatLng pos_user = new LatLng(lat, lng);
+       /* Polyline line = mMap.addPolyline(new PolylineOptions()
+                .add( new LatLng(lat, lng), new LatLng(43.296482, 5.369779999999992))
+                .width(5)
+                .color(Color.RED)
+                .geodesic(true)
+        );*/
 
    }
 
@@ -298,7 +335,7 @@ public class MapActivity extends AppCompatActivity
             public String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendGetRequest(Config.ip+"api.php" +
+                String s = rh.sendGetRequest(Config.url+"api.php" +
                         "?fichier=users&action=user_position" +
                         "&values[id]="+Config.id_user_co);
 
@@ -363,7 +400,7 @@ public class MapActivity extends AppCompatActivity
             public String doInBackground(Void... params) {
 
                 RequestHandler rh = new RequestHandler();
-                String req = Config.ip+"api.php" +
+                String req = Config.url+"api.php" +
                         "/?fichier=users&action=Update_Share_Pos" +
                         "&values[id_user]=" +Config.id_user_co;
                 String s = rh.sendGetRequest(req);

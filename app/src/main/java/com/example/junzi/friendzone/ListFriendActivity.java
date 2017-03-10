@@ -171,7 +171,7 @@ public class ListFriendActivity extends AppCompatActivity {
 
                 }
 
-                String s = rh.sendGetRequest(Config.ip+"api.php/?" +
+                String s = rh.sendGetRequest(Config.url+"api.php/?" +
                         "fichier=users&action=non_friend&"+requete+"&values[id_user]="+Config.id_user_co);
 
                 return s;
@@ -239,7 +239,7 @@ public class ListFriendActivity extends AppCompatActivity {
                 RequestHandler rh = new RequestHandler();
                 /*String s = rh.sendGetRequest(Config.URL_CONNECT);*/
 
-                String s = rh.sendGetRequest(Config.ip+"api.php/?fichier=users&action=add_friend&values[id_amis]="+nb+"&values[id_co]="+Config.id_user_co);
+                String s = rh.sendGetRequest(Config.url+"api.php/?fichier=users&action=add_friend&values[id_amis]="+nb+"&values[id_co]="+Config.id_user_co);
 
 
 

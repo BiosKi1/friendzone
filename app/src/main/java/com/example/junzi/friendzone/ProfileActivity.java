@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity{
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 //Changer avec l'id de l'user co une fois que la vue est OK
-                String url = Config.ip+
+                String url = Config.url+
                         "api.php" +
                         "/?fichier=users" +
                         "&action=user_profil" +
@@ -152,7 +152,7 @@ public class ProfileActivity extends AppCompatActivity{
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 //Changer avec l'id de l'user co une fois que la vue est OK
-                String url = Config.ip+
+                String url = Config.url+
                         "api.php" +
                         "/?fichier=users" +
                         "&action=update_profil" +

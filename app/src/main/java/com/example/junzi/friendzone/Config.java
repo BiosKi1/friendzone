@@ -6,12 +6,12 @@ package com.example.junzi.friendzone;
 
 public class Config {
 
-    public static String ip = "http://friendzone01.esy.es/php/friendzoneapi/api/";
+    public static String url = "http://friendzone01.esy.es/php/friendzoneapi/api/";
     //teSS
 
     public static String id_user_co = "";
     //Address of our scripts of the CR
-    public static final String URL_GET_ALL = ip+"api.php?fichier=users&action=users_liste";
+    public static final String URL_GET_ALL = url+"api.php?fichier=users&action=users_liste";
 
     //Keys that will be used to send the request to php scripts
     public static final String KEY_EMP_ID = "id";

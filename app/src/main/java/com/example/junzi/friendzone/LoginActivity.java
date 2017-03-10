@@ -68,7 +68,7 @@ public class LoginActivity extends ActionBarActivity {
                 String s = null;
                 try {
                     RequestHandler rh = new RequestHandler();
-                    String req = Config.ip + "api.php/?" +
+                    String req = Config.url + "api.php/?" +
                             "fichier=users&action=connexion&values" +
                             "[pseudo]=" + uname + "&values[mdp]=" + pass;
                     s = rh.sendGetRequest(req);
@@ -94,7 +94,7 @@ public class LoginActivity extends ActionBarActivity {
                 loadingDialog.dismiss();
 
                 System.out.println(Config.id_user_co);
-                System.out.println("MMZ");
+                System.out.println("MMZZZZ");
                 if(result.contains("ok")){
                     Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                     intent.putExtra(USER_NAME, username);

@@ -133,7 +133,7 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
 
                 RequestHandler rh = new RequestHandler();
 
-                String url = Config.ip+"api.php/?fichier=users&action=partage_position" +
+                String url = Config.url+"api.php/?fichier=users&action=partage_position" +
                         "&values[id_user]=" +Config.id_user_co+
                         "&values[id_ami]=" +id_amis+
                         "&values[partage_pos]="+part;
@@ -180,7 +180,7 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
 
                 RequestHandler rh = new RequestHandler();
 
-                String url = Config.ip+"api.php/?fichier=users&action=delete_amis" +
+                String url = Config.url+"api.php/?fichier=users&action=delete_amis" +
                         "&values[id_user]=" +Config.id_user_co+
                         "&values[id_ami]=" +id_amis;
                 String s = rh.sendPostRequest(url,hashMap);
