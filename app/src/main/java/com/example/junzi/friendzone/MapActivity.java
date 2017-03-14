@@ -54,6 +54,7 @@ public class MapActivity extends AppCompatActivity
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
     private GoogleMap mMap;
     private String JSON_STRING;
+    private String JSON_STRING_partage;
     private ArrayList<LatLng> locations = new ArrayList();
     private ArrayList<String> names = new ArrayList();
     private ArrayList<Integer> tel_friends = new ArrayList();
@@ -76,6 +77,7 @@ public class MapActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getPositionCurrentUser();
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -87,15 +89,8 @@ public class MapActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Button clickButton = (Button) findViewById(R.id.partage_Pos);
-        clickButton.setOnClickListener( new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                sendPartagePos();
-            }
-        });
+        getJSON();
     }
 
     @Override
@@ -382,12 +377,7 @@ public class MapActivity extends AppCompatActivity
         }
     }
 
-    public void partagePos(View view)
-    {
-        sendPartagePos();
-    }
-
-    private void sendPartagePos(){
+    private void sendPartagePos(final String partage){
         class GetJSON extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
             @Override
@@ -400,22 +390,19 @@ public class MapActivity extends AppCompatActivity
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                JSON_STRING = s;
-                setPosUser(s);
+                JSON_STRING_partage = s;
+
             }
 
             @Override
             public String doInBackground(Void... params) {
 
                 RequestHandler rh = new RequestHandler();
-                String req = Config.url+"api.php" +
+                String s = rh.sendGetRequest(Config.url+"api.php" +
                         "/?fichier=users&action=Update_Share_Pos" +
-                        "&values[id_user]=" +Config.id_user_co;
-                String s = rh.sendGetRequest(req);
+                        "&values[par]="+partage+"&values[id]=" +Config.id_user_co);
 
-                System.out.println(req);
                 System.out.println(s);
-
                 return s;
             }
         }
@@ -423,5 +410,96 @@ public class MapActivity extends AppCompatActivity
         GetJSON gj = new GetJSON();
         gj.execute();
 
+        finish();
+        startActivity(getIntent());
+
+    }
+
+    private String showEmployee(){
+        JSONObject jsonObject = null;
+        String part = "1";
+
+        try {
+            jsonObject = new JSONObject(JSON_STRING_partage);
+            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+            for(int i = 0; i<result.length(); i++){
+                JSONObject jo = result.getJSONObject(i);
+
+
+
+                if(jo.getString("par").equalsIgnoreCase("0")){
+
+                    part = "0";
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return part;
+
+    }
+
+    private void getJSON(){
+        class GetJSON extends AsyncTask<Void,Void,String>{
+
+
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(MapActivity.this,"Veuillez patienter","Mise à jour...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING_partage = s;
+
+                String rest = showEmployee();
+
+                if( rest.equalsIgnoreCase("0")){
+                    Button clickButton = (Button) findViewById(R.id.partage_Pos);
+                    clickButton.setText("Partager ma position");
+                    clickButton.setOnClickListener( new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            sendPartagePos("1");
+                        }
+                    });
+                }else{
+                    Button clickButton = (Button) findViewById(R.id.partage_Pos);
+                    clickButton.setText("Cacher ma position");
+                    clickButton.setOnClickListener( new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            sendPartagePos("0");
+                        }
+                    });
+                }
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                RequestHandler rh = new RequestHandler();
+
+                System.out.println(Config.id_user_co);
+                System.out.println("ID USER CO ICI");
+
+                String url = Config.url +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
+                String s = rh.sendGetRequest(url);
+
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
     }
 }
