@@ -57,7 +57,7 @@ public class MapActivity extends AppCompatActivity
     private String JSON_STRING_partage;
     private ArrayList<LatLng> locations = new ArrayList();
     private ArrayList<String> names = new ArrayList();
-    private ArrayList<Integer> tel_friends = new ArrayList();
+    private ArrayList<String> tel_friends = new ArrayList();
 
 
     @Override
@@ -137,15 +137,27 @@ public class MapActivity extends AppCompatActivity
             startActivity(intent);
             // Handle the camera action
         }
+        else if (id == R.id.share_location)
+        {
+            Intent intent = new Intent(this, ShareLocationActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.liste_location)
+        {
+            Intent intent = new Intent(this, ListeLocationActivity.class);
+            startActivity(intent);
+        }
         else if (id == R.id.listeContact)
         {
             Intent intent = new Intent(this, ListeAmisActivity.class);
             startActivity(intent);
+			finish();
         }
         else if (id == R.id.addAmi)
         {
             Intent intent = new Intent(this, ListFriendActivity.class);
             startActivity(intent);
+			finish();
         } /*else if (id == R.id.nav_manage) {
         }*/
         else if (id == R.id.Deconnexion)
@@ -216,19 +228,19 @@ public class MapActivity extends AppCompatActivity
         }
         Location location = locationManager.getLastKnownLocation(provider1);
 
-        /*double lat = location.getLatitude();
-        double lng = location.getLongitude();
-
-        locations.add(new LatLng(lat, lng));*/
-
         int i = 0;
 
-        //On déclare le polyline, c'est-à-dire le trait (ici bleu) que l'on ajoute sur la carte pour tracer l'itinéraire
+		//Récupère la position de la personne co
+		location = googleMap.getMyLocation();
 
+		//LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
 
+		LatLng pos_user = new LatLng(48.8000000,2.1333300);
 
         /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
         for(LatLng locationz : locations){
+
+
             /*Gestion de la photo des contact sur la map*/
             Bitmap.Config conf = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = Bitmap.createBitmap(80, 80, conf);
@@ -270,9 +282,9 @@ public class MapActivity extends AppCompatActivity
 
             );
             i++;
-            double lat = location.getLatitude();
-            double lng = location.getLongitude();
-            LatLng pos_user = new LatLng(lat, lng);
+
+
+
 
             /*Permet de mettre le trajet sur la map , geodesic(true) est supposé mettre
              l'itinéraire avec des virages mais il fait que une ligne droite*/
@@ -341,7 +353,7 @@ public class MapActivity extends AppCompatActivity
                 String s = rh.sendGetRequest(Config.url+"api.php" +
                         "?fichier=users&action=user_position" +
                         "&values[id]="+Config.id_user_co);
-
+                System.out.println(s);
                 return s;
             }
         }
@@ -353,6 +365,8 @@ public class MapActivity extends AppCompatActivity
 
     private void setPosUser(String s){
         JSONObject jsonObject = null;
+
+        System.out.println("LALALALALA");
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -366,9 +380,9 @@ public class MapActivity extends AppCompatActivity
                 names.add(c.getString(Config.TAG_NAME_AMI)+" "+c.getString(Config.TAG_PRENOM_AMI));
 
                 /*Ajoute le tel des freinds dans le arrayList*/
-                tel_friends.add(c.getInt(Config.TAG_TELEPHONE));
+                tel_friends.add(c.getString(Config.TAG_TELEPHONE));
 
-                /*Ajouter la position des firends dans le arrayList*/
+                /*Ajouter la position des friends dans le arrayList*/
                 locations.add(new LatLng(c.getDouble(Config.TAG_LAT_AMI), c.getDouble(Config.TAG_LONG_AMI)));
             }
 

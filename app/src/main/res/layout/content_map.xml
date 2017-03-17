@@ -24,5 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Partager ma position"/>
+    <Button
+        android:id="@+id/share_loc"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:gravity="left|center"
+        android:background="@drawable/location"
+        android:onClick="shareLocationOnMap"
+        />
 
 </RelativeLayout>

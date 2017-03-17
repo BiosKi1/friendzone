@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,13 +47,9 @@ public class ListeAmisActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		System.out.println(Config.id_user_co);
-		System.out.println("ID USER CO ICI 1");
 		setContentView(R.layout.exemple_liste_membre);
 		listView = (ListView) findViewById(R.id.listViewplus);
 
-		System.out.println(Config.id_user_co);
-		System.out.println("ID USER CO ICI 2");
 		getJSON();
 	}
 
@@ -127,8 +124,6 @@ public class ListeAmisActivity extends AppCompatActivity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println(Config.id_user_co);
-				System.out.println("ID USER CO ICI");
 
 				String url = Config.url +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
@@ -205,5 +200,18 @@ public class ListeAmisActivity extends AppCompatActivity {
 		}
 
 		return imgString;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(this, MapActivity.class);
+			startActivity(intent);
+			finish();
+		}
+
+		return true;
 	}
 }

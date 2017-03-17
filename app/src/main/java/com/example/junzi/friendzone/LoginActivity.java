@@ -3,21 +3,13 @@ package com.example.junzi.friendzone;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.junzi.friendzone.Config;
-import com.example.junzi.friendzone.MapActivity;
-import com.example.junzi.friendzone.R;
-import com.example.junzi.friendzone.RequestHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +20,6 @@ public class LoginActivity extends ActionBarActivity {
     private EditText editTextUserName;
     private EditText editTextPassword;
 
-    private static final String PREF_USER_NAME = "PREF_USER_NAME";
 
     String username;
     String password;
@@ -108,7 +99,6 @@ public class LoginActivity extends ActionBarActivity {
                 loadingDialog.dismiss();
 
                 if(result.contains("ok")){
-                    /*SaveSharedPreference.setUserName(LoginActivity.this, PREF_USER_NAME);*/
                     SaveSharedPreference.setUserId(LoginActivity.this, Config.id_user_co);
 
                     Intent intent = new Intent(LoginActivity.this, MapActivity.class);

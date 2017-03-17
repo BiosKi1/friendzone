@@ -90,6 +90,7 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
 			public void onClick(View view) {
 				partager_position(id_ami.get(position),partres);
                 context.startActivity(context.getIntent());
+                context.finish();
 			}
 		});
 
@@ -98,6 +99,7 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
             public void onClick(View view) {
                 delete_amis(id_ami.get(position));
                 context.startActivity(context.getIntent());
+                context.finish();
             }
         });
 

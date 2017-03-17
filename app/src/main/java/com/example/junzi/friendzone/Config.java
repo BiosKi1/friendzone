@@ -6,8 +6,8 @@ package com.example.junzi.friendzone;
 
 public class Config {
 
+    //public static String url = "http://192.168.224.111/friendzoneapi/api/";
     public static String url = "http://friendzone01.esy.es/php/friendzoneapi/api/";
-    //teSS
 
     public static String id_user_co = "";
     //Address of our scripts of the CR

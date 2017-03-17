@@ -20,7 +20,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     private Button signinBtn;
     private AwesomeValidation validation;
     private String JSON_STRING;
-    private Boolean inscription = false, existMail = false;
+    private Boolean inscription = false, existMail = false, existPseudo = false;
     private String PseudoS, PhoneS, EmailS, PasswordS;
 
     //Expression régulière utiliser pour contrôler la validité des informations saisies
@@ -60,24 +60,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         /* Call l'api pour inscription */
         if(validation.validate()){
             getJSON();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (existMail){
-				Toast.makeText(this, "Cette adresse e-mail est déjà utlisée", Toast.LENGTH_LONG).show();
-            }else if(inscription){
-				Toast.makeText(this, "Inscription prise en compte", Toast.LENGTH_LONG).show();
-                Intent myIntent = new Intent(this, MapActivity.class);
-                startActivity(myIntent);
-			}
-            else{
-				Toast.makeText(this, "Informations valides", Toast.LENGTH_LONG).show();
-                Toast.makeText(this, "Echec de l'inscription, contact a admin", Toast.LENGTH_LONG).show();
-            }
-
         }
     }
 
@@ -87,6 +69,29 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view){
         if(view == signinBtn){
             submitForm();
+        }
+    }
+
+    public void redirectionForm(){
+        if (existMail){
+            Toast.makeText(this, "Cette adresse e-mail est déjà utlisée", Toast.LENGTH_LONG).show();
+            inscription = false;
+            existMail = false;
+            existPseudo = false;
+        }else if(inscription){
+            Toast.makeText(this, "Inscription prise en compte", Toast.LENGTH_LONG).show();
+            Intent myIntent = new Intent(this, MapActivity.class);
+            startActivity(myIntent);
+        }
+        else if(existPseudo) {
+            Toast.makeText(this, "Ce pseudo est déjà utilisé", Toast.LENGTH_LONG).show();
+            inscription = false;
+            existMail = false;
+            existPseudo = false;
+        }
+        else{
+            Toast.makeText(this, "Informations valides", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Echec de l'inscription, contact a admin", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -105,6 +110,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 super.onPostExecute(s);
                 loading.dismiss();
                 JSON_STRING = s;
+                redirectionForm();
             }
 
             @Override
@@ -120,6 +126,9 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                         "&values[tel]=" + PhoneS +
                         "&values[pseudo]=" + PseudoS +
                         "&values[mail]="+ EmailS);
+
+				System.out.println("LOVNI");
+				System.out.println(s);
                 if(s.contains("ok")){
 					inscription = true;
 				}
@@ -127,6 +136,10 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 					existMail = true;
 					inscription = false;
 				}
+                else if(s.contains("error_pseudo")){
+                    existPseudo = true;
+                    inscription = false;
+                }
                 else{
                     inscription = false;
                 }
@@ -137,5 +150,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         }
         GetJSON gj = new GetJSON();
         gj.execute();
+
     }
 }

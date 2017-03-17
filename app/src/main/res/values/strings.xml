@@ -11,8 +11,14 @@
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
     <string name="prompt_password">Mot de passe</string>
+    <string name="prompt_nom_lieu">Nom</string>
+    <string name="prompt_ville_lieu">Ville</string>
+    <string name="prompt_adresse_lieu">Adresse</string>
+    <string name="prompt_cp_lieu">Code postal</string>
     <string name="action_sign_in">Se connecter</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="action_share_location">Partager ce lieu !</string>
+
     <string name="error_invalid_pseudo">Pseudo incorrect</string>
     <string name="error_invalid_password_short">Mot de passe trop court</string>
     <string name="error_invalid_password">Mot de passe trop incorrect</string>
@@ -57,6 +63,8 @@
     <!-- Menu de navigation -->
     <string name="nav_lstContact">Liste des contacts</string>
     <string name="nav_addFriend">Ajouter un ami</string>
+    <string name="nav_liste_location">Liste lieux partagés</string>
+    <string name="nav_share_location">Partager un lieu</string>
     <string name="nav_profil">Profil</string>
 
 </resources>

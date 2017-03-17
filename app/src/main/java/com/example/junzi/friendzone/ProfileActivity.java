@@ -88,12 +88,6 @@ public class ProfileActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
-        /*View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-        }*/
-
     }
 
     private void getJSON(){
@@ -217,11 +211,6 @@ public class ProfileActivity extends AppCompatActivity{
                 editTextPhoneNumber.setEnabled(false);
                 editTextEmail.setEnabled(false);
 
-                /*try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
                 if(success){
                     Toast.makeText(this, "Vos informations ont bien été mis à jour", Toast.LENGTH_LONG).show();
                 }else{

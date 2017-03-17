@@ -32,6 +32,12 @@
             android:name=".LoginActivity"
             android:label="@string/app_connexion" />
         <activity
+            android:name=".ListeLocationActivity"
+            android:label="@string/app_connexion" />
+        <activity
+            android:name=".ShareLocationActivity"
+            android:label="@string/app_connexion" />
+        <activity
             android:name=".InscriptionActivity"
             android:label="@string/app_inscription" />
         <activity

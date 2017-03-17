@@ -14,6 +14,14 @@
             android:id="@+id/addAmi"
             android:icon="@drawable/add"
             android:title="@string/nav_addFriend" />
+        <item
+            android:id="@+id/liste_location"
+            android:icon="@drawable/city"
+            android:title="@string/nav_liste_location" />
+        <item
+            android:id="@+id/share_location"
+            android:icon="@drawable/location"
+            android:title="@string/nav_share_location" />
         <!--<item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
