@@ -48,6 +48,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.junzi.friendzone.R.drawable.location;
+
 public class MapActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
@@ -58,6 +60,12 @@ public class MapActivity extends AppCompatActivity
     private ArrayList<LatLng> locations = new ArrayList();
     private ArrayList<String> names = new ArrayList();
     private ArrayList<String> tel_friends = new ArrayList();
+    private Button partager_lieu;
+    private LocationManager locationManager;
+    private Location location;
+    private Double share_longi;
+    private Double share_lat;
+    private Boolean success = false;
 
 
     @Override
@@ -89,6 +97,13 @@ public class MapActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        partager_lieu = (Button) findViewById(R.id.share_loc);
+        partager_lieu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareLocationOnMap();
+            }
+        });
 
         getJSON();
     }
@@ -131,37 +146,30 @@ public class MapActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.Profil)
-        {
+        if (id == R.id.Profil) {
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
             // Handle the camera action
         }
-        else if (id == R.id.share_location)
-        {
+        else if (id == R.id.share_location) {
             Intent intent = new Intent(this, ShareLocationActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.liste_location)
-        {
+        else if (id == R.id.liste_location) {
             Intent intent = new Intent(this, ListeLocationActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.listeContact)
-        {
+        else if (id == R.id.listeContact) {
             Intent intent = new Intent(this, ListeAmisActivity.class);
             startActivity(intent);
 			finish();
         }
-        else if (id == R.id.addAmi)
-        {
+        else if (id == R.id.addAmi) {
             Intent intent = new Intent(this, ListFriendActivity.class);
             startActivity(intent);
 			finish();
-        } /*else if (id == R.id.nav_manage) {
-        }*/
-        else if (id == R.id.Deconnexion)
-        {
+        }
+        else if (id == R.id.Deconnexion) {
             /*SharedPreferences preferences =getSharedPreferences("PREF_USER_ID",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
@@ -179,8 +187,7 @@ public class MapActivity extends AppCompatActivity
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-        } /*else if (id == R.id.nav_send) {
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -208,7 +215,7 @@ public class MapActivity extends AppCompatActivity
 
         mMap.setMyLocationEnabled(true);
 
-        LocationManager locationManager;
+
         String svcName = Context.LOCATION_SERVICE;
         locationManager = (LocationManager) getSystemService(svcName);
 
@@ -353,7 +360,6 @@ public class MapActivity extends AppCompatActivity
                 String s = rh.sendGetRequest(Config.url+"api.php" +
                         "?fichier=users&action=user_position" +
                         "&values[id]="+Config.id_user_co);
-                System.out.println(s);
                 return s;
             }
         }
@@ -365,8 +371,6 @@ public class MapActivity extends AppCompatActivity
 
     private void setPosUser(String s){
         JSONObject jsonObject = null;
-
-        System.out.println("LALALALALA");
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -416,7 +420,6 @@ public class MapActivity extends AppCompatActivity
                         "/?fichier=users&action=Update_Share_Pos" +
                         "&values[par]="+partage+"&values[id]=" +Config.id_user_co);
 
-                System.out.println(s);
                 return s;
             }
         }
@@ -504,9 +507,6 @@ public class MapActivity extends AppCompatActivity
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
 
-                System.out.println(Config.id_user_co);
-                System.out.println("ID USER CO ICI");
-
                 String url = Config.url +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
                 String s = rh.sendGetRequest(url);
 
@@ -516,4 +516,71 @@ public class MapActivity extends AppCompatActivity
         GetJSON gj = new GetJSON();
         gj.execute();
     }
+
+    private void shareLocationOnMap(){
+        shareLocationOnMapJson();
+       /* LatLng koordinat = new LatLng(location.getLatitude(), location.getLongitude());
+        System.out.println(koordinat);*/
+        System.out.println("ICI ICI ICI LA LA");
+
+        //LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
+        Toast.makeText(this, Config.id_user_co, Toast.LENGTH_LONG).show();
+    }
+
+    private void shareLocationOnMapJson(){
+        class GetJSON extends AsyncTask<Void,Void,String> {
+
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(MapActivity.this,"Chargement","Patientez...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                JSON_STRING = s;
+
+                if (s.contains("ok")){
+                    success = true;
+                    Toast.makeText(MapActivity.this, "Ce lieu viens d'être partagé avec vos amis !", Toast.LENGTH_LONG).show();
+                }
+                else if (s.contains("error_insert_lieu")){
+                    success = false;
+                    Toast.makeText(MapActivity.this, "Erreur d'insertion table lieu", Toast.LENGTH_LONG).show();
+                }
+                else if (s.contains("error_insert_appartient")){
+                    success = false;
+                    Toast.makeText(MapActivity.this, "Erreur d'insertion table appartient", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(MapActivity.this, "Erreur de saisie, lieu inconnu!", Toast.LENGTH_LONG).show();
+                    success = false;
+                }
+
+
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                RequestHandler rh = new RequestHandler();
+                share_longi = 56.2;
+                share_lat = 2.56;
+                //Changer avec l'id de l'user co une fois que la vue est OK
+                String url = Config.url+"api.php/?fichier=users&action=share_location" +
+                        "&values[id_user]=" +Config.id_user_co+
+                        "&values[libelle]=testlibelle"+
+                        "&values[longi]="+share_longi+
+                        "&values[lat]="+share_lat;
+
+                String s = rh.sendGetRequest(url);
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
+    }
+
 }
