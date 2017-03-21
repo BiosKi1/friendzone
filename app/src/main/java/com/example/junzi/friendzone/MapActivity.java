@@ -482,7 +482,7 @@ public class MapActivity extends AppCompatActivity
 
                 if( rest.equalsIgnoreCase("0")){
                     Button clickButton = (Button) findViewById(R.id.partage_Pos);
-                    clickButton.setText("Partager ma position");
+                    clickButton.setText("Position");
                     clickButton.setOnClickListener( new View.OnClickListener() {
 
                         @Override
@@ -492,7 +492,7 @@ public class MapActivity extends AppCompatActivity
                     });
                 }else{
                     Button clickButton = (Button) findViewById(R.id.partage_Pos);
-                    clickButton.setText("Cacher ma position");
+                    clickButton.setText("Cacher position");
                     clickButton.setOnClickListener( new View.OnClickListener() {
 
                         @Override

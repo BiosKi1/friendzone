@@ -19,18 +19,29 @@
         tools:context="com.example.junzi.friendzone.MapActivity"
         tools:layout="@layout/activity_map" />
 
+    <LinearLayout
+        android:id="@+id/zoneBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom" >
     <Button
         android:id="@+id/partage_Pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Partager ma position"/>
+        android:textColor="@color/txtPartage"
+        android:drawableLeft="@drawable/sharepos"
+        android:text="Position"/>
 
     <Button
         android:id="@+id/share_loc"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:gravity="left|center"
-        android:background="@drawable/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/partage_Pos"
+        android:textColor="@color/txtPartage"
+        android:drawableLeft="@drawable/sharelieu"
+        android:text="Lieu"
         />
+
+    </LinearLayout>
 
 </RelativeLayout>

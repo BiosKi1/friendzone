@@ -28,7 +28,7 @@
             android:title="Tools" />-->
     </group>
 
-    <item android:title="Option">
+    <item android:title="Gestion">
         <menu>
             <item
                 android:id="@+id/Deconnexion"
