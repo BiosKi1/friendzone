@@ -228,21 +228,26 @@ public class MapActivity extends AppCompatActivity
         criteria.setSpeedRequired(false);
         criteria.setCostAllowed(true);
 
-        String provider1 = locationManager.getBestProvider(criteria, true);
+        String provider1 = locationManager.getBestProvider(criteria, false);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider1);
 
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
         int i = 0;
 
 		//Récupère la position de la personne co
-		location = googleMap.getMyLocation();
+		//location = googleMap.getMyLocation();
 
 		//LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
 
-		LatLng pos_user = new LatLng(48.8000000,2.1333300);
+        System.out.println(latitude);
+        System.out.println(longitude);
+
+        LatLng pos_user = new LatLng(latitude,longitude);
 
         /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
         for(LatLng locationz : locations){
@@ -298,8 +303,7 @@ public class MapActivity extends AppCompatActivity
             Polyline line = mMap.addPolyline(new PolylineOptions()
                     .add(pos_user, locationz)
                     .width(5)
-                    .color(Color.RED)
-                    .geodesic(true));
+                    .color(Color.RED));
 
             /*Faire vibrer le téléphone si l'utilisateur a des amis sur la map*/
             if(locations.size() > 0)
