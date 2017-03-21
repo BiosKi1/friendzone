@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_connexion" />
+            android:label="@string/app_connexion"
+            android:theme="@style/AppTheme.RandomNoStatusBar"/>
         <activity
             android:name=".ListeLocationActivity"
             android:label="@string/app_connexion" />

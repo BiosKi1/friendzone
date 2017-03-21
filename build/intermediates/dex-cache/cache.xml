@@ -39,21 +39,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_da66d099952b0b5a2cdd7be26522b08a61c19d8c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-10.0.1_76c5d3fd9e2c25950065968ee8944decfa8b03fe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_da66d099952b0b5a2cdd7be26522b08a61c19d8c/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,6 +111,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a48dc0b148059764d32500be558702d5ff932058">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.1_273756c14159b21427559dfa2d9ddba82869d67b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
         jumboMode="true"
         optimize="true"
@@ -126,15 +135,6 @@
         revision="25.0.2"
         sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-10.0.1_84a0140e9f969c44dd931cd7e03d8db3ff325292/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a48dc0b148059764d32500be558702d5ff932058">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.1_273756c14159b21427559dfa2d9ddba82869d67b/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -255,21 +255,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-10.0.1_b6426c0f063ab2685209d41475865f5250a1f0b8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_dfce7749ebd53fe86d482858fa93655cf6713407/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-10.0.1_b6426c0f063ab2685209d41475865f5250a1f0b8/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -453,21 +453,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.1_3eca4563c883283b07e2f84bc188eb0b6781d4ff/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="a48dc0b148059764d32500be558702d5ff932058">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.1_273756c14159b21427559dfa2d9ddba82869d67b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.1_3eca4563c883283b07e2f84bc188eb0b6781d4ff/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -507,21 +507,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.1_76cc618bf14b1a585f9bdb7adf5f1d292de45450/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="f6cf557be4dbd0282ea2388633e5378634423226">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-10.0.1_f6ccad89d4c5bbd7033c12dbd71d2b901dcc82eb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.1_76cc618bf14b1a585f9bdb7adf5f1d292de45450/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -534,21 +534,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-10.0.1_9ee56e6f8a55a30de9bd9e5e66e233d1ec9e8cd4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="aee64634871d88a419d59eb743c1258a60f19700">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_5f4624bbb2e8d99b9ae3bd73a44388eceb934199/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-10.0.1_9ee56e6f8a55a30de9bd9e5e66e233d1ec9e8cd4/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -745,7 +745,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="9f8a1f48d7724466f6412b187246ff063d3c06f4">
+        sha1="341f78a899602d0dd18a629e329233f903514a3b">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_998c276e2db3fe823e49f9f95d578bc033030cab/classes.dex" />
     </item>
     <item
@@ -759,21 +759,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.1_fd8bf5b07547ce362cc5c76f24caa7388973fecc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="df1cb17511aabbb63264a0024949d1e42502a512">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.1_76cc618bf14b1a585f9bdb7adf5f1d292de45450/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.1_fd8bf5b07547ce362cc5c76f24caa7388973fecc/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -1204,7 +1204,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="012de666626bd17fb16aa636d2cb43c4c5a40ca2">
+        sha1="2fe3bbd4cf77bd84bab7a8bc3c20f7307683d50d">
         <dex dex="/Volumes/G-DRIVE-mobile-USB-C/Users/julien/StudioProjects/friendzone/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9dff5c707f05b49fbf856f5e3b0c48ef24e0407a/classes.dex" />
     </item>
 
