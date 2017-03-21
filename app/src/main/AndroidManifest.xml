@@ -36,7 +36,7 @@
             android:label="@string/app_connexion" />
         <activity
             android:name=".ShareLocationActivity"
-            android:label="@string/app_connexion" />
+            android:label="@string/app_share_location" />
         <activity
             android:name=".InscriptionActivity"
             android:label="@string/app_inscription" />
