@@ -6,7 +6,7 @@ package com.example.junzi.friendzone;
 
 public class Config {
 
-    //public static String url = "http://192.168.224.111/friendzoneapi/api/";
+    //public static String url = "http://192.168.224.112/friendzoneapi/api/";
     public static String url = "http://friendzone01.esy.es/php/friendzoneapi/api/";
 
     public static String id_user_co = "";
@@ -38,6 +38,11 @@ public class Config {
     public static final String TAG_LAT_AMI = "lat_ami";
     public static final String TAG_MAIL = "mail";
     public static final String TAG_FIRST_NAME_USER = "prenom";
+
+    public static final String TAG_ADRESSE_LIEU = "adresse";
+    public static final String TAG_ADRESSE_NOM = "libelle";
+    public static final String TAG_LAT_LIEU = "lat";
+    public static final String TAG_LONG_LIEU = "longi";
 
     //employee id to pass with intent
     public static final String EMP_ID = "emp_id";

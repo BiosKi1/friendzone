@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.RandomNoStatusBar"/>
         <activity
             android:name=".ListeLocationActivity"
-            android:label="@string/app_connexion" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ShareLocationActivity"
             android:label="@string/app_share_location" />
@@ -50,13 +50,16 @@
         <activity
             android:name=".ProfileActivity"
             android:label="@string/app_profil" />
+
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:name=".MapActivity"
+            android:label="@string/title_activity_map"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
 
         <!--
          ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -66,10 +69,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".MapActivity"
-            android:label="@string/title_activity_map"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

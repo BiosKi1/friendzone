@@ -11,7 +11,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -46,7 +48,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.junzi.friendzone.R.drawable.location;
 
@@ -235,8 +239,10 @@ public class MapActivity extends AppCompatActivity
         }
         Location location = locationManager.getLastKnownLocation(provider1);
 
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
+        //double latitude = location.getLatitude();
+        //double longitude = location.getLongitude();
+        double latitude = 43.296482;
+        double longitude = 5.369779999999992;
         int i = 0;
 
 		//Récupère la position de la personne co
@@ -523,12 +529,9 @@ public class MapActivity extends AppCompatActivity
 
     private void shareLocationOnMap(){
         shareLocationOnMapJson();
-       /* LatLng koordinat = new LatLng(location.getLatitude(), location.getLongitude());
-        System.out.println(koordinat);*/
+
         System.out.println("ICI ICI ICI LA LA");
 
-        //LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
-        Toast.makeText(this, Config.id_user_co, Toast.LENGTH_LONG).show();
     }
 
     private void shareLocationOnMapJson(){
@@ -569,15 +572,42 @@ public class MapActivity extends AppCompatActivity
 
             @Override
             protected String doInBackground(Void... params) {
+                String locality="";
+
+                /*share_lat =location.getLatitude();
+                share_longi = location.getLongitude();*/
+                share_longi = 5.369779999999992;
+                share_lat = 43.296482;
+
                 RequestHandler rh = new RequestHandler();
-                share_longi = 56.2;
-                share_lat = 2.56;
+                Geocoder gc = new Geocoder(MapActivity.this);
+                List<Address> list = null;
+
+                try {
+                    list = gc.getFromLocation(share_lat, share_longi, 1);
+                    try{
+                        Address add = list.get(0);
+                        locality = add.getLocality();
+                        System.out.println(locality);
+
+                    }catch (Exception e) {
+                        System.out.println("Problème adresse !");
+                        e.printStackTrace();
+                    }
+
+
+                } catch (IOException e) {
+                    System.out.println("Problème ajout en base !");
+                    e.printStackTrace();
+                }
+                
                 //Changer avec l'id de l'user co une fois que la vue est OK
                 String url = Config.url+"api.php/?fichier=users&action=share_location" +
                         "&values[id_user]=" +Config.id_user_co+
                         "&values[libelle]=testlibelle"+
                         "&values[longi]="+share_longi+
-                        "&values[lat]="+share_lat;
+                        "&values[lat]="+share_lat+
+                        "&values[adresse]="+locality;
 
                 String s = rh.sendGetRequest(url);
                 return s;
