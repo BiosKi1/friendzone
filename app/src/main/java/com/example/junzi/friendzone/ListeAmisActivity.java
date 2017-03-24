@@ -127,7 +127,9 @@ public class ListeAmisActivity extends AppCompatActivity {
 
 				String url = Config.url +"api.php/?fichier=users&action=amis_liste&values[id]="+Config.id_user_co;
 				String s = rh.sendGetRequest(url);
-
+				System.out.println("ici s");
+				System.out.println(url);
+				System.out.println(s);
 				return s;
 			}
 		}

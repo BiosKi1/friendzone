@@ -16,6 +16,7 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ import java.util.List;
 import static com.example.junzi.friendzone.R.drawable.location;
 
 public class MapActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+        implements LocationListener,NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
     private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
     private GoogleMap mMap;
@@ -74,6 +75,8 @@ public class MapActivity extends AppCompatActivity
     private Double share_lat;
     private String libelle_lieu;
     private Boolean success = false;
+    double latitude;
+    double longitude;
 
 
     @Override
@@ -93,12 +96,6 @@ public class MapActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getPositionCurrentUser();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -224,85 +221,89 @@ public class MapActivity extends AppCompatActivity
         mMap.setMyLocationEnabled(true);
 
 
-        String svcName = Context.LOCATION_SERVICE;
-        locationManager = (LocationManager) getSystemService(svcName);
+   }
 
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setPowerRequirement(Criteria.POWER_LOW);
+   public void ajouterUserMap(){
+       String svcName = Context.LOCATION_SERVICE;
+       locationManager = (LocationManager) getSystemService(svcName);
 
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-        criteria.setSpeedRequired(false);
-        criteria.setCostAllowed(true);
+       Criteria criteria = new Criteria();
+       criteria.setAccuracy(Criteria.ACCURACY_FINE);
+       criteria.setPowerRequirement(Criteria.POWER_LOW);
 
-        String provider1 = locationManager.getBestProvider(criteria, false);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(provider1);
+       criteria.setAltitudeRequired(false);
+       criteria.setBearingRequired(false);
+       criteria.setSpeedRequired(false);
+       criteria.setCostAllowed(true);
 
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
+       String provider1 = locationManager.getBestProvider(criteria, false);
+       if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+           // TODO: Consider calling
+           return;
+       }
 
-        int i = 0;
+       Location location = locationManager.getLastKnownLocation(provider1);
 
-		LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
+       Location locationA = new Location("LocationA");
+       locationA.setLatitude(location.getLatitude());
+       locationA.setLongitude(location.getLongitude());
 
-        System.out.println(latitude);
-        System.out.println(longitude);
+       int i = 0;
+
+       LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
 
         /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
-        for(LatLng locationz : locations){
-
-
+       for(LatLng locationz : locations){
             /*Gestion de la photo des contact sur la map*/
-            Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = Bitmap.createBitmap(80, 80, conf);
-            Bitmap marker = BitmapFactory.decodeResource(getResources(), R.drawable.imgdefault2);
-            Bitmap newMarker = marker.copy(Bitmap.Config.ARGB_8888, true);
-            Canvas canvas = new Canvas(newMarker);
-            // Offset the drawing by 25x25
+           Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+           Bitmap bitmap = Bitmap.createBitmap(80, 80, conf);
+           Bitmap marker = BitmapFactory.decodeResource(getResources(), R.drawable.imgdefault2);
+           Bitmap newMarker = marker.copy(Bitmap.Config.ARGB_8888, true);
+           Canvas canvas = new Canvas(newMarker);
+           // Offset the drawing by 25x25
            /* canvas.drawBitmap(bitmap, 25, 25, null);*/
 
-            // paint defines the text color, stroke width and size
-            Paint color = new Paint();
-            color.setTextSize(35);
-            color.setColor(Color.BLACK);
+           // paint defines the text color, stroke width and size
+           Paint color = new Paint();
+           color.setTextSize(20);
+           color.setColor(Color.BLACK);
 
-            canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                    R.drawable.imgdefault2), 0,0, color);
+           canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                   R.drawable.imgdefault2), 0,0, color);
+
+           Location locationB = new Location("LocationB");
+           locationB.setLatitude(locationz.latitude);
+           locationB.setLongitude(locationz.longitude);
 
             /*Ajout du markeur avec les paramètre sur la map*/
-            mMap.addMarker(new MarkerOptions()
-                    .position(locationz)
-                    .title(names.get(i))
-                    .snippet(""+tel_friends.get(i))
-                    // Pour avoir les markers avec une couleur choisi random pour chaque friend
-                    //.icon(BitmapDescriptorFactory.defaultMarker(new Random().nextInt(360)))
+           mMap.addMarker(new MarkerOptions()
+                   .position(locationz)
+                   .title(names.get(i))
+                   .snippet(""+tel_friends.get(i))
+                   .snippet(locationA.distanceTo(locationB) / 1000+" km")
+                   .alpha(0.9f)
+                   // Pour avoir les markers avec une couleur choisi random pour chaque friend
+                   //.icon(BitmapDescriptorFactory.defaultMarker(new Random().nextInt(360)))
 
-                    .icon(BitmapDescriptorFactory.fromBitmap(newMarker))
-
-
-            );
-            i++;
+                   .icon(BitmapDescriptorFactory.fromBitmap(newMarker))
+           );
+           i++;
 
             /*Permet de mettre le trajet sur la map , geodesic(true) est supposé mettre
              l'itinéraire avec des virages mais il fait que une ligne droite*/
-            Polyline line = mMap.addPolyline(new PolylineOptions()
-                    .add(pos_user, locationz)
-                    .width(5)
-                    .color(Color.RED)
-					.geodesic(true));
+           Polyline line = mMap.addPolyline(new PolylineOptions()
+                   .add(pos_user, locationz)
+                   .width(5)
+                   .color(Color.RED)
+                   .geodesic(true));
 
             /*Faire vibrer le téléphone si l'utilisateur a des amis sur la map*/
-            if(locations.size() > 0)
-            {
-                Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-                v.vibrate(500);
-            }
-        }
+           if(locations.size() > 0)
+           {
+               Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+               v.vibrate(500);
+           }
+       }
    }
 
     @Override
@@ -327,7 +328,7 @@ public class MapActivity extends AppCompatActivity
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MapActivity.this,"Fetching...","Wait...",false,false);
+                loading = ProgressDialog.show(MapActivity.this,"Chargement...","Patientez...",false,false);
             }
 
             @Override
@@ -336,6 +337,7 @@ public class MapActivity extends AppCompatActivity
                 loading.dismiss();
                 JSON_STRING = s;
                 setPosUser(s);
+                ajouterUserMap();
             }
 
             @Override
@@ -428,27 +430,21 @@ public class MapActivity extends AppCompatActivity
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
 
-
-
                 if(jo.getString("par").equalsIgnoreCase("0")){
 
                     part = "0";
                 }
-
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
         return part;
-
     }
 
     private void getJSON(){
         class GetJSON extends AsyncTask<Void,Void,String>{
-
 
             ProgressDialog loading;
             @Override
@@ -649,4 +645,23 @@ public class MapActivity extends AppCompatActivity
         gj.execute();
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        Toast.makeText(this, "ici ici ic", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }

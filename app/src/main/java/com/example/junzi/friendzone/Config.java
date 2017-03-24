@@ -39,6 +39,8 @@ public class Config {
     public static final String TAG_MAIL = "mail";
     public static final String TAG_FIRST_NAME_USER = "prenom";
 
+    public static final String TAG_ID_INSERT = "id_insert";
+
     public static final String TAG_ADRESSE_LIEU = "adresse";
     public static final String TAG_ADRESSE_NOM = "libelle";
     public static final String TAG_LAT_LIEU = "lat";

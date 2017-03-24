@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener{
@@ -110,7 +115,19 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 super.onPostExecute(s);
                 loading.dismiss();
                 JSON_STRING = s;
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(JSON_STRING);
+
+                    /*On recup' l'id insert*/
+                    SaveSharedPreference.setUserId(InscriptionActivity.this, jsonObject.getString(Config.TAG_JSON_ARRAY));
+                    Config.id_user_co = jsonObject.getString(Config.TAG_JSON_ARRAY);
+                } catch (JSONException e) {
+                    System.out.println("Erreur récupération id de la personne inscr.");
+                    e.printStackTrace();
+                }
                 redirectionForm();
+
             }
 
             @Override
@@ -120,19 +137,14 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
                 String s = rh.sendGetRequest(Config.url+"api.php/" +
                         "?fichier=users&action=inscription" +
-                        "&values[nom]=pasdechamp" +
-                        "&values[prenom]=pasdechamp" +
+                        "&values[nom]=" +
+                        "&values[prenom]=" +
                         "&values[mdp]=" + PasswordS +
                         "&values[tel]=" + PhoneS +
                         "&values[pseudo]=" + PseudoS +
                         "&values[mail]="+ EmailS);
 
-				System.out.println("LOVNI");
-				System.out.println(s);
-                if(s.contains("ok")){
-					inscription = true;
-				}
-				else if(s.contains("error_mail")){
+				if(s.contains("error_mail")){
 					existMail = true;
 					inscription = false;
 				}
@@ -140,11 +152,16 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                     existPseudo = true;
                     inscription = false;
                 }
-                else{
+                else if(s.contains("error")){
                     inscription = false;
                 }
+                else if(s.isEmpty()){
+                    inscription = false;
+                }
+                else{
+                    inscription = true;
+                }
 
-                System.out.println(inscription);
                 return s;
             }
         }

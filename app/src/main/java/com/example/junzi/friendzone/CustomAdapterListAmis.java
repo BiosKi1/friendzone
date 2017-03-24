@@ -117,13 +117,13 @@ public class CustomAdapterListAmis extends ArrayAdapter<String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(context,"Updating...","Wait...",false,false);
+                /*loading = ProgressDialog.show(context,"Updating...","Wait...",false,false);*/
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
+                /*loading.dismiss();*/
             }
 
             @Override
