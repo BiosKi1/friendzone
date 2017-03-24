@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 		Notification.Builder builder = new Notification.Builder(this)
 				.setWhen(System.currentTimeMillis())
-				.setSmallIcon(R.drawable.profil)
+				.setSmallIcon(R.drawable.sharelieu)
 				.setContentTitle("Friend Zone")
 				.setContentText("Welcome... Into the Friend Zone !");
 

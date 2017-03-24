@@ -3,6 +3,7 @@ package com.example.junzi.friendzone;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,6 +33,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -69,6 +72,7 @@ public class MapActivity extends AppCompatActivity
     private Location location;
     private Double share_longi;
     private Double share_lat;
+    private String libelle_lieu;
     private Boolean success = false;
 
 
@@ -239,21 +243,15 @@ public class MapActivity extends AppCompatActivity
         }
         Location location = locationManager.getLastKnownLocation(provider1);
 
-        //double latitude = location.getLatitude();
-        //double longitude = location.getLongitude();
-        double latitude = 43.296482;
-        double longitude = 5.369779999999992;
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+
         int i = 0;
 
-		//Récupère la position de la personne co
-		//location = googleMap.getMyLocation();
-
-		//LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
+		LatLng pos_user = new LatLng(location.getLatitude(), location.getLongitude());
 
         System.out.println(latitude);
         System.out.println(longitude);
-
-        LatLng pos_user = new LatLng(latitude,longitude);
 
         /* Afficher les utilisateurs ainsi que les numéros de tel, avec photo */
         for(LatLng locationz : locations){
@@ -276,17 +274,6 @@ public class MapActivity extends AppCompatActivity
             canvas.drawBitmap(BitmapFactory.decodeResource(getResources(),
                     R.drawable.imgdefault2), 0,0, color);
 
-
-           /* final PolylineOptions polylines = new PolylineOptions();
-            polylines.color(Color.BLUE);
-
-            //On construit le polyline
-            for(final LatLng latLng : locations) {
-                System.out.println("dsfgdgdgfd MMZ");
-                polylines.add(locationz);
-            }*/
-
-
             /*Ajout du markeur avec les paramètre sur la map*/
             mMap.addMarker(new MarkerOptions()
                     .position(locationz)
@@ -301,15 +288,13 @@ public class MapActivity extends AppCompatActivity
             );
             i++;
 
-
-
-
             /*Permet de mettre le trajet sur la map , geodesic(true) est supposé mettre
              l'itinéraire avec des virages mais il fait que une ligne droite*/
             Polyline line = mMap.addPolyline(new PolylineOptions()
                     .add(pos_user, locationz)
                     .width(5)
-                    .color(Color.RED));
+                    .color(Color.RED)
+					.geodesic(true));
 
             /*Faire vibrer le téléphone si l'utilisateur a des amis sur la map*/
             if(locations.size() > 0)
@@ -318,16 +303,6 @@ public class MapActivity extends AppCompatActivity
                 v.vibrate(500);
             }
         }
-        /*double lat = location.getLatitude();
-        double lng = location.getLongitude();*/
-        //LatLng pos_user = new LatLng(lat, lng);
-       /* Polyline line = mMap.addPolyline(new PolylineOptions()
-                .add( new LatLng(lat, lng), new LatLng(43.296482, 5.369779999999992))
-                .width(5)
-                .color(Color.RED)
-                .geodesic(true)
-        );*/
-
    }
 
     @Override
@@ -528,10 +503,31 @@ public class MapActivity extends AppCompatActivity
     }
 
     private void shareLocationOnMap(){
-        shareLocationOnMapJson();
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-        System.out.println("ICI ICI ICI LA LA");
+		final EditText et = new EditText(this);
 
+		// set prompts.xml to alertdialog builder
+		alertDialogBuilder.setView(et);
+
+		// set dialog message
+		alertDialogBuilder.setMessage("Saisir le nom du lieu").setCancelable(true).setPositiveButton("PARTAGER", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+                if (!et.getText().toString().equals("")) {
+                    System.out.println(et.getText().toString());
+                    libelle_lieu = et.getText().toString();
+                    shareLocationOnMapJson();
+                }
+                else{
+                    Toast.makeText(MapActivity.this, "Saisir un nom pour le lieu", Toast.LENGTH_LONG).show();
+                }
+			}
+		});
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		// show it
+		alertDialog.show();
     }
 
     private void shareLocationOnMapJson(){
@@ -574,10 +570,41 @@ public class MapActivity extends AppCompatActivity
             protected String doInBackground(Void... params) {
                 String locality="";
 
-                /*share_lat =location.getLatitude();
-                share_longi = location.getLongitude();*/
-                share_longi = 5.369779999999992;
-                share_lat = 43.296482;
+                if (ContextCompat.checkSelfPermission(MapActivity.this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                    } else {
+
+                        ActivityCompat.requestPermissions(MapActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+                    }
+                }
+
+                String svcName = Context.LOCATION_SERVICE;
+                locationManager = (LocationManager) getSystemService(svcName);
+
+                Criteria criteria = new Criteria();
+                criteria.setAccuracy(Criteria.ACCURACY_FINE);
+                criteria.setPowerRequirement(Criteria.POWER_LOW);
+
+                criteria.setAltitudeRequired(false);
+                criteria.setBearingRequired(false);
+                criteria.setSpeedRequired(false);
+                criteria.setCostAllowed(true);
+
+                String provider1 = locationManager.getBestProvider(criteria, false);
+                if (ActivityCompat.checkSelfPermission(MapActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    return "";
+                }
+                Location location_s = locationManager.getLastKnownLocation(provider1);
+
+                share_lat =location_s.getLatitude();
+                share_longi = location_s.getLongitude();
 
                 RequestHandler rh = new RequestHandler();
                 Geocoder gc = new Geocoder(MapActivity.this);
@@ -600,11 +627,16 @@ public class MapActivity extends AppCompatActivity
                     System.out.println("Problème ajout en base !");
                     e.printStackTrace();
                 }
-                
+
+                if (locality == null){
+                    locality = "Adresse non disponible";
+                    locality = locality.replaceAll(" ", "%20");
+                }
+
                 //Changer avec l'id de l'user co une fois que la vue est OK
                 String url = Config.url+"api.php/?fichier=users&action=share_location" +
                         "&values[id_user]=" +Config.id_user_co+
-                        "&values[libelle]=testlibelle"+
+                        "&values[libelle]="+libelle_lieu+
                         "&values[longi]="+share_longi+
                         "&values[lat]="+share_lat+
                         "&values[adresse]="+locality;
