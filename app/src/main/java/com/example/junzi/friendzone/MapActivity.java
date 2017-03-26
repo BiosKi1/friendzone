@@ -19,6 +19,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
@@ -47,6 +48,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,9 +77,11 @@ public class MapActivity extends AppCompatActivity
     private Double share_lat;
     private String libelle_lieu;
     private Boolean success = false;
-    double latitude;
-    double longitude;
-
+    private double latitude;
+    private double longitude;
+    private double altitude;
+    private float accuracy;
+    private String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,7 +240,9 @@ public class MapActivity extends AppCompatActivity
        criteria.setSpeedRequired(false);
        criteria.setCostAllowed(true);
 
-       String provider1 = locationManager.getBestProvider(criteria, false);
+       String provider1 = locationManager.GPS_PROVIDER;
+       provider = locationManager.GPS_PROVIDER;
+
        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
            // TODO: Consider calling
            return;
@@ -356,6 +362,17 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+    protected void onResume()
+    {
+        super.onResume();
+
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return  ;
+        }
+        locationManager.requestLocationUpdates(provider, 200, 1, this);
+    }
     private void setPosUser(String s){
         JSONObject jsonObject = null;
 
@@ -648,6 +665,12 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location) {
         Toast.makeText(this, "ici ici ic", Toast.LENGTH_LONG).show();
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+        altitude = location.getAltitude();
+        accuracy = location.getAccuracy();
+
+
     }
 
     @Override
